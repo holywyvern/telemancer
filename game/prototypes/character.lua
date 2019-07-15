@@ -14,4 +14,8 @@ function character:setup(x, y, d)
   self._realY = y * 16
 end
 
+function character:isMoving()
+  self._x ~= self._realX or self._y ~= self._realY
+end
+
 return character

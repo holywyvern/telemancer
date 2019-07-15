@@ -31,6 +31,10 @@ end
 
 function map:update(dt)
   data:update(dt)
+  return interpreter:update(dt)
+  if interpreter:isRunning() then
+    return
+  end
   for _, character in ipairs(characters) do
     character:update(dt)
   end
