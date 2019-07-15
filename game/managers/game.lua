@@ -1,3 +1,6 @@
+local setup = require("game.setup")
+local player = require("game.player")
+
 local data = {}
 
 local game = {}
@@ -5,8 +8,13 @@ local game = {}
 function game:clear()
   data = {
     switches = {},
-    variables = {}
+    variables = {},
+    items = {}
   }
+  map:setup('home')
+  player:setup(
+    setup.player.start.x, setup.player.start.y, setup.player.start.direction
+  )  
 end
 
 function game:switch(id, value)

@@ -4,16 +4,18 @@ local game   = require("managers.game")
 
 local save = {}
 
-function save:save(index)
+local filename = 'game.savedata'
+
+function save:dump()
   local data = {}
   self:serialize(data)
   local file = binser.serialize(time.now(), data)
-  success, message = love.filesystem.write(self:filenameFor(index), file)
+  success, message = love.filesystem.write(filename, file)
   return success, message
 end
 
-function save:load(index)
-  local contents, error = love.filesystem.read(self:filenameFor(index))
+function save:load()
+  local contents, error = love.filesystem.read(filename)
   if contents then
     local data, size = binser.deserialize(file)
     self:deserialize(data[2])
@@ -31,8 +33,8 @@ function save:deserialize(data)
   game:data(data.game)
 end
 
-function save:filenameFor(index)
-  return "save" .. index .. ".savedata"
+function save:exists()
+  return love.filesystem.exists(filename)
 end
 
 return save

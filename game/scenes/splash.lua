@@ -1,3 +1,6 @@
+local save = require("managers.save")
+local game = require("managers.game")
+
 local manager = require("managers.scene")
 
 local scene = {}
@@ -40,9 +43,18 @@ function scene:updateExit(dt)
   if self.timing <= 0 then
     self.timing = 0
     self.state = 'finish'
-    manager:switch("title")
+    manager:switch(self:nextScene())
   else
     self.timing = self.timing - dt * 2
+  end
+end
+
+function scene:nextScene()
+  if save:exists() then
+    return 'title'
+  else
+    game:clear()
+    return 'map'
   end
 end
 
