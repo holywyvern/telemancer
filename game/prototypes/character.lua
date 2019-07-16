@@ -4,7 +4,7 @@ local character = {
   _d = 0,
   _img = nil,
   _animDelay = 0,
-  _speed = 2,
+  _speed = 3,
   _frame = 0,
   _pattern = 0,
   _standingAnimation = false
@@ -22,7 +22,7 @@ function character:updateAnimation(dt)
   if self:hasAnimation() then
     self._animDelay = self._animDelay - dt
     while self._animDelay < 0 do
-      self._animDelay = self._animDelay + self._speed / 8
+      self._animDelay = self._animDelay + 0.5 / self._speed
       self._pattern = (self._pattern + 1) % 4
     end
   else
@@ -39,7 +39,6 @@ function character:updateMovement(dt)
     return
   end
   local ms = self:_calculateMoveSpeed(dt)
-  print(self._realX, self._x * TILE_SIZE)
   self._realX = self:_updateMovementAxis(ms, self._x * TILE_SIZE, self._realX)
   self._realY = self:_updateMovementAxis(ms, self._y * TILE_SIZE, self._realY)
 end
@@ -137,7 +136,8 @@ function character:move(direction)
 end
 
 function character:canMove(direction)
-  return true
+  local map = require("game.map")
+  return map:isPassable(self._x, self._y, direction)
 end
 
 function character:canFace(direction)

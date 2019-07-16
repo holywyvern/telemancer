@@ -49,7 +49,7 @@ function map:draw()
   for _, layer in ipairs(data.layers) do
     if layer.name == 'characters' then
       self:drawCharacters()
-    else
+    elseif layer.name ~= 'collitions' then
       layer:draw()
     end
   end
@@ -60,6 +60,34 @@ function map:drawCharacters()
   for _, character in ipairs(characters) do
     character:draw()
   end
+end
+
+function map:isPassable(x, y, direction)
+  local collitions = data.layers.collitions
+  if not collitions then
+    return true
+  end
+  x, y = self:_calculatePosition(x, y, direction)
+  if x < 1 or x > data.width then
+    return false
+  end
+  if y < 1 or y > data.height then
+    return false
+  end
+  return not collitions.data[y][x]
+end
+
+function map:_calculatePosition(x, y, direction)
+  if direction == 2 then
+    return x, y + 1
+  elseif direction == 4 then
+    return x - 1, y
+  elseif direction == 6 then
+    return x + 1, y
+  elseif direction == 8 then
+    return x, y - 1
+  end
+  return x, y
 end
 
 return map

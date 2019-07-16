@@ -1,9 +1,9 @@
 return {
   player = {
     start = {
-      x = 1,
-      y = 1,
-      direction = 2
+      x = 4,
+      y = 7,
+      direction = 8
     }
   }
 }

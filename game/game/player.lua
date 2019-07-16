@@ -19,7 +19,6 @@ function player:setup(x, y, d)
 end
 
 function player:updateControls(dt)
-  if controls:down('up') then print(controls:down('up')) end
   if not self:canAct() then
     return
   end
