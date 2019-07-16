@@ -90,4 +90,12 @@ function map:_calculatePosition(x, y, direction)
   return x, y
 end
 
+function map:getDimensions()
+  return data.width * data.tilewidth, data.height * data.tileheight
+end
+
+function map:getTileSize()
+  return data.tilewidth, data.tileheight
+end
+
 return map

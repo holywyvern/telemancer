@@ -10,7 +10,7 @@ local character = {
   _standingAnimation = false
 }
 
-local TILE_SIZE = 16
+local map
 
 function character:update(dt)
   self:updateAnimation(dt)
@@ -38,9 +38,12 @@ function character:updateMovement(dt)
   if not self:isMoving() then
     return
   end
-  local ms = self:_calculateMoveSpeed(dt)
-  self._realX = self:_updateMovementAxis(ms, self._x * TILE_SIZE, self._realX)
-  self._realY = self:_updateMovementAxis(ms, self._y * TILE_SIZE, self._realY)
+  map = map or require("game.map")
+  local tx, ty = map:getTileSize()  
+  local mx = self:_calculateMoveSpeed(dt, tx)
+  local my = self:_calculateMoveSpeed(dt, ty)
+  self._realX = self:_updateMovementAxis(mx, self._x * tx, self._realX)
+  self._realY = self:_updateMovementAxis(my, self._y * ty, self._realY)
 end
 
 function character:_updateMovementAxis(ms, target, current)
@@ -60,8 +63,8 @@ function character:_adjustPosition(current, target, distance)
   return current + distance
 end
 
-function character:_calculateMoveSpeed(dt)
-  return self._speed * TILE_SIZE * dt
+function character:_calculateMoveSpeed(dt, tileSize)
+  return self._speed * tileSize * dt
 end
 
 function character:_calculateAnimationDelay()
@@ -136,7 +139,7 @@ function character:move(direction)
 end
 
 function character:canMove(direction)
-  local map = require("game.map")
+  map = map or require("game.map")
   return map:isPassable(self._x, self._y, direction)
 end
 
@@ -153,16 +156,20 @@ function character:draw()
 end
 
 function character:moveTo(x, y, d)
+  map = map or require("game.map")
+  local tx, ty = map:getTileSize()
   self._x = x
   self._y = y
   self._d = d
-  self._realX = x * TILE_SIZE
-  self._realY = y * TILE_SIZE
+  self._realX = x * tx
+  self._realY = y * ty
 end
 
 function character:isMoving()
-  local xAdjust = self._x * TILE_SIZE ~= self._realX
-  local yAdjust = self._y * TILE_SIZE ~= self._realY
+  map = map or require("game.map")
+  local tx, ty = map:getTileSize()  
+  local xAdjust = self._x * tx ~= self._realX
+  local yAdjust = self._y * ty ~= self._realY
   return xAdjust or yAdjust
 end
 
