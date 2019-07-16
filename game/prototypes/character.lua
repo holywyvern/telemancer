@@ -118,10 +118,13 @@ function character:face(direction)
 end
 
 function character:move(direction)
+  if self._d ~= direction then
+    self:face(direction)
+    return
+  end  
   if not self:canMove(direction) then
     return
   end
-  self:face(direction)
   if     direction == 2 then
     self._y = self._y + 1
   elseif direction == 4 then
