@@ -1,16 +1,15 @@
-local engine = require("game.engine")
+local character = require("prototypes.character")
 
-local player = engine.newCharacter()
+local player = character:extend()
 
 local oldUpdate = player.update
 
 function player:update(dt)
-  self:updateControls(dt)
   oldUpdate(self, dt)
   if self:isMoving() then
     return
   end
-  
+  self:updateControls(dt)
 end
 
 function player:updateControls(dt)

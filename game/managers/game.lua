@@ -1,5 +1,6 @@
 local setup = require("game.setup")
 local player = require("game.player")
+local map = require("game.map")
 
 local data = {}
 

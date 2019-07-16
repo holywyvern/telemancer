@@ -1,10 +1,12 @@
+local map = require("game.map")
+
 local scene = {}
 
 function scene:enter(previous, ...)
 end
 
 function scene:update(dt)
-	-- update entities
+	map:update(dt)
 end
 
 function scene:leave(next, ...)
@@ -12,7 +14,8 @@ function scene:leave(next, ...)
 end
 
 function scene:draw()
-	-- draw the level
+	love.graphics.setColor(1, 1, 1, 1)
+	map:draw()
 end
 
 return scene

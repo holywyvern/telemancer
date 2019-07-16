@@ -1,5 +1,5 @@
 local character = require("prototypes.character")
 
-local event = setmetatable({}, { __index = character })
+local event = character:extend()
 
 return event

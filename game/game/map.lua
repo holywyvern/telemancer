@@ -1,7 +1,9 @@
+local sti = require("lib.sti")
+
 local player = require("game.player")
 local interpreter = require("game.interpreter")
 
-local currentMap, data, events
+local currentMap, data, events, characters
 
 local map = {}
 
@@ -18,23 +20,26 @@ function map:setup(name)
 end
 
 function map:loadData()
-  data = cartographer.load("data/maps/" .. name .. ".lua")
+  local filename = "data/maps/" .. currentMap .. ".lua"
+  data = sti(filename)
+  if not data then
+    error("Coudn't load map '" .. filename .. "'")
+  end
 end
 
 function map:loadEvents()
-  events = { player }
-  local eventData = require("data.events." .. currentMap .. ".events")
+  events = {}
+  characters = { player }
+  local eventData = require("data.events." .. currentMap)
   for _, event in ipairs(eventData) do
     events[#events + 1] = event
+    characters[#characters + 1] = event
   end
 end
 
 function map:update(dt)
   data:update(dt)
-  return interpreter:update(dt)
-  if interpreter:isRunning() then
-    return
-  end
+  interpreter:update(dt)
   for _, character in ipairs(characters) do
     character:update(dt)
   end

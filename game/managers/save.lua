@@ -34,7 +34,7 @@ function save:deserialize(data)
 end
 
 function save:exists()
-  return love.filesystem.exists(filename)
+  return love.filesystem.getInfo(filename, "file")
 end
 
 return save
