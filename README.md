@@ -16,3 +16,7 @@ You can just do `love path/where/game/is` to run it locally for fast development
 ## Executable distributions
 
 You can append the .love file to the love executable, because zip headers are at the end, and binary files have a header at the top, it works like a charm!
+
+## Documentation
+
+GDD is [here](https://docs.google.com/document/d/1npqmgQECE7_RG5HE7KtymN_MsfhiOCtO6AVrZNtExVA/edit?usp=sharing)
