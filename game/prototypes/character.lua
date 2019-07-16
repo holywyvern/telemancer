@@ -4,7 +4,7 @@ local character = {
   _d = 0,
   _img = nil,
   _animDelay = 0,
-  _speed = 3,
+  _speed = 2,
   _frame = 0,
   _pattern = 0,
   _standingAnimation = false
@@ -22,7 +22,7 @@ function character:updateAnimation(dt)
   if self:hasAnimation() then
     self._animDelay = self._animDelay - dt
     while self._animDelay < 0 do
-      self._animDelay = self._animDelay + self._speed * 2
+      self._animDelay = self._animDelay + self._speed / 8
       self._pattern = (self._pattern + 1) % 4
     end
   else
@@ -38,19 +38,20 @@ function character:updateMovement(dt)
   if not self:isMoving() then
     return
   end
-  local ms = self:_calculateMoveSpeed(dt)  
-  self._realX = self:_updateMovementAxis(dt, ms, self._x * TILE_SIZE, self._realX)
-  self._realY = self:_updateMovementAxis(dt, ms, self._y * TILE_SIZE, self._realY)
+  local ms = self:_calculateMoveSpeed(dt)
+  print(self._realX, self._x * TILE_SIZE)
+  self._realX = self:_updateMovementAxis(ms, self._x * TILE_SIZE, self._realX)
+  self._realY = self:_updateMovementAxis(ms, self._y * TILE_SIZE, self._realY)
 end
 
-function character:_updateMovementAxis(dt, ms, target, current)
+function character:_updateMovementAxis(ms, target, current)
   local unit = 0
   if  target < current then
     unit = -1
   elseif target > current then
     unit = 1
   end
-  return self:_adjustPosition(current, ax, math.floor(unit * ms))
+  return self:_adjustPosition(current, target, unit * ms)
 end
 
 function character:_adjustPosition(current, target, distance)
@@ -61,7 +62,7 @@ function character:_adjustPosition(current, target, distance)
 end
 
 function character:_calculateMoveSpeed(dt)
-  return self._speed * dt
+  return self._speed * TILE_SIZE * dt
 end
 
 function character:_calculateAnimationDelay()
@@ -76,24 +77,24 @@ function character:updateRect()
     self._rect:release()
     self._rect = nil
   end
-  local w, h = self._img:getDimensions()
-  w = w / 3
-  h = h / 4
+  local wi, hi = self._img:getDimensions()
+  local w = wi / 3
+  local h = hi / 4
   local i = self:_getPose()
   local j = (self._d - 2) / 2
   if not self._rect then
-    self._rect = love.graphics.newQuad(i * w, j * h, w, h)
+    self._rect = love.graphics.newQuad(i * w, j * h, w, h, wi, hi)
   else
     self._rect:setViewport(i * w, j * h, w, h)
   end
 end
 
 function character:_getPose()
-  if i == 0 then
+  if self._pattern == 0 then
     return 1
-  elseif i == 1 then
+  elseif self._pattern == 1 then
     return 0
-  elseif i == 2 then
+  elseif self._pattern == 2 then
     return 1
   else
     return 2
@@ -102,6 +103,9 @@ function character:_getPose()
 end
 
 function character:face(direction)
+  if not self:canFace(direction) then
+    return
+  end
   if     direction == 2 then
     self._d = direction
   elseif direction == 4 then
@@ -114,11 +118,27 @@ function character:face(direction)
 end
 
 function character:move(direction)
-  if     direction == 2 then
-  elseif direction == 4 then
-  elseif direction == 6 then
-  elseif direction == 8 then
+  if not self:canMove(direction) then
+    return
   end
+  self:face(direction)
+  if     direction == 2 then
+    self._y = self._y + 1
+  elseif direction == 4 then
+    self._x = self._x - 1
+  elseif direction == 6 then
+    self._x = self._x + 1
+  elseif direction == 8 then
+    self._y = self._y - 1
+  end
+end
+
+function character:canMove(direction)
+  return true
+end
+
+function character:canFace(direction)
+  return true
 end
 
 function character:draw()
@@ -126,10 +146,10 @@ function character:draw()
     return
   end
   local x, y, w, h = self._rect:getViewport()
-  love.graphics.draw(self._img, self._rect, self._realX, self._realY, 0, 1, 1, w / 2, h )
+  love.graphics.draw(self._img, self._rect, self._realX - w / 2, self._realY, 0, 1, 1, w / 2, h )
 end
 
-function character:setup(x, y, d)
+function character:moveTo(x, y, d)
   self._x = x
   self._y = y
   self._d = d

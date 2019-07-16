@@ -2,12 +2,16 @@ local screen = require("lib.screen")
 
 local scene = require("managers.scene")
 
+local controls = require("config.controls")
+
 function love.load()
+  love.graphics.setDefaultFilter('linear','nearest')
   screen.init(16 * 16, 16 * 9, true)
   scene:switch("splash")
 end
 
 function love.update(dt)
+  controls:update(dt)
   scene:apply()
   scene:emit('update', dt)
 end
