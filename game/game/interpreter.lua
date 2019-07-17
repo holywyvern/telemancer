@@ -16,14 +16,12 @@ function interpreter:update(dt)
     self:_getNextCommand()
   end  
   if currentCommand then
-    if currentCommand then
-      currentCommand:update(dt)
-    end
+    currentCommand:update(dt)
   end
 end
 
 function interpreter:isWorking()
-  return currentCommand and not currentCommand:hasFinished()
+  return currentCommand and currentCommand:isRunning()
 end
 
 function interpreter:_getNextCommand()
@@ -36,7 +34,9 @@ end
 
 function interpreter:_createCommand(type, args)
   commandTypes[type] = commandTypes[type] or require("game.commands." .. type)
-  return commandTypes[type]:create(unpack(args))
+  local command = commandTypes[type]:create(unpack(args))
+  command:start()
+  return command
 end
 
 function interpreter:addCommand(type, ...)

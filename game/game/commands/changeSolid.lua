@@ -2,14 +2,15 @@ local Command = require("prototypes.command")
 
 local command = Command:extend()
 
-function command:create()
+function command:create(target, value)
   local result = self:extend()
+  result._target = target
+  result._value = value
   return result
 end
 
 function command:start()
-  local interpreter = require("game.interpreter")
-  interpreter:startWork()
+  self._target._solid = self._value
 end
 
 return command

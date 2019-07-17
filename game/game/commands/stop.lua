@@ -7,7 +7,7 @@ function command:create()
   return result
 end
 
-function command:update(dt)
+function command:start()
   local interpreter = require("game.interpreter")
   interpreter:endWork()
 end

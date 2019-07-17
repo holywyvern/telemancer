@@ -8,7 +8,7 @@ local currentMap, data, events, characters
 local map = {}
 
 local function sortCharacter(a, b)
-  return a._realY < b._realY
+  return (a._realY + a._z) < (b._realY + b._z)
 end
 
 function map:setup(name)
@@ -75,6 +75,9 @@ function map:isPassable(x, y, direction)
   if y < 1 or y > data.height then
     return false
   end
+  if map:_isASolidEventAt(x, y) then
+    return false
+  end
   return not collitions.data[y][x]
 end
 
@@ -99,12 +102,24 @@ function map:getTileSize()
   return data.tilewidth, data.tileheight
 end
 
-function map:callEventsAt(x, y)
-  for _, event in ipairs(events) do
-    if event._interactive and event:isAt(x, y) then
-      event:call()
+function map:_isASolidEventAt(x, y)
+  local list = self:getEventsAt(x, y)
+  for _, event in ipairs(list) do
+    if event._solid then
+      return true
     end
   end
+  return false
+end
+
+function map:getEventsAt(x, y)
+  local result = {}
+  for _, event in ipairs(events) do
+    if event:isAt(x, y) then
+      result[#result + 1] = event
+    end
+  end
+  return result
 end
 
 return map

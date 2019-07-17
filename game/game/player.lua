@@ -30,15 +30,20 @@ function player:updateControls(dt)
     self:move(4)
   elseif controls:down('right') then
     self:move(6)
-  elseif controls:pressed('interact') then
-    self:checkEvents()
+  end
+  if controls:pressed('interact') then
+    self:checkSolidEvents()
   end
 end
 
-function player:checkEvents()
+function player:checkSolidEvents()
   local map = require("game.map")
   local x, y = map:_calculatePosition(self._x, self._y, self._d)
-  map:callEventsAt(x, y)
+  for _, event in ipairs(map:getEventsAt(x, y)) do
+    if event._solid then
+      event:call()
+    end
+  end
 end
 
 function player:canAct()

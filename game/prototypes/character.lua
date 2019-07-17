@@ -1,6 +1,7 @@
 local character = { 
   _x = 0,
   _y = 0,
+  _z = 0,
   _d = 0,
   _img = nil,
   _animDelay = 0,
@@ -156,6 +157,7 @@ function character:draw()
 end
 
 function character:moveTo(x, y, d)
+  d = self._d or d
   map = map or require("game.map")
   local tx, ty = map:getTileSize()
   self._x = x

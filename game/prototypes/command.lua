@@ -4,8 +4,11 @@ function command:extend()
   return setmetatable({}, { __index = self })
 end
 
-function command:hasFinished()
-  return true
+function command:isRunning()
+  return false
+end
+
+function command:start()
 end
 
 function command:update(dt)
