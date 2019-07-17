@@ -34,6 +34,7 @@ function map:loadEvents()
   for _, event in ipairs(eventData) do
     events[#events + 1] = event
     characters[#characters + 1] = event
+    events[event._name] = event
   end
 end
 
@@ -96,6 +97,14 @@ end
 
 function map:getTileSize()
   return data.tilewidth, data.tileheight
+end
+
+function map:callEventsAt(x, y)
+  for _, event in ipairs(events) do
+    if event._interactive && event:isAt(x, y) then
+      event:call()
+    end
+  end
 end
 
 return map

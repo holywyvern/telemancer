@@ -23,8 +23,8 @@ function scene:draw()
 	self._cam:attach()
 		love.graphics.setColor(1, 1, 1, 1)
 		map:draw()
-		self._cam:detach()
-		self._cam:draw()
+	self._cam:detach()
+	self._cam:draw()
 end
 
 return scene
