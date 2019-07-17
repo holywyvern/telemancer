@@ -101,7 +101,7 @@ end
 
 function map:callEventsAt(x, y)
   for _, event in ipairs(events) do
-    if event._interactive && event:isAt(x, y) then
+    if event._interactive and event:isAt(x, y) then
       event:call()
     end
   end

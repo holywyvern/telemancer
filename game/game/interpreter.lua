@@ -5,21 +5,25 @@ local currentCommand = nil
 
 local commandTypes = {}
 
-local runing = false
+local running = false
 
 function interpreter:isRunning()
-  return runing
+  return running
 end
 
 function interpreter:update(dt)
+  if not self:isWorking() then
+    self:_getNextCommand()
+  end  
   if currentCommand then
-    if currentCommand:hasFinished() then
-      self:_getNextCommand()
-    end
     if currentCommand then
       currentCommand:update(dt)
     end
   end
+end
+
+function interpreter:isWorking()
+  return currentCommand and not currentCommand:hasFinished()
 end
 
 function interpreter:_getNextCommand()
@@ -30,7 +34,7 @@ function interpreter:_getNextCommand()
   end
 end
 
-function self:_createCommand(type, args)
+function interpreter:_createCommand(type, args)
   commandTypes[type] = commandTypes[type] or require("game.commands." .. type)
   return commandTypes[type]:create(unpack(args))
 end
@@ -38,6 +42,14 @@ end
 function interpreter:addCommand(type, ...)
   local args = {...}
   pendingCommands[#pendingCommands + 1] = { type, args }
+end
+
+function interpreter:startWork()
+  running = true
+end
+
+function interpreter:endWork()
+  running = false
 end
 
 return interpreter
