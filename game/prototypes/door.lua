@@ -8,6 +8,7 @@ local player
 
 function door:create(name, image, position, destination)
   local newDoor = self:extend()
+  newDoor._d = 2
   newDoor._name = name
   newDoor._z = 1
   newDoor:moveTo(unpack(position))
@@ -23,41 +24,29 @@ function door:call()
   interpreter:addCommand("start")
     interpreter:addCommand("changeSolid", self, false)
     interpreter:addCommand("pose", self, 1)
-    interpreter:addCommand("wait", 0.4)
+    interpreter:addCommand("wait", 0.1)
     interpreter:addCommand("pose", self, 2)
-    interpreter:addCommand("wait", 0.4)
+    interpreter:addCommand("wait", 0.1)
     interpreter:addCommand("move", player, 8, true)
     interpreter:addCommand("pose", self, 1)
-    interpreter:addCommand("wait", 0.4)
+    interpreter:addCommand("wait", 0.1)
     interpreter:addCommand("pose", self, 0)
-    interpreter:addCommand("wait", 0.4)
+    interpreter:addCommand("wait", 0.1)
     interpreter:addCommand("teleport", self._destination)
     interpreter:addCommand("changeSolid", self, true)
   interpreter:addCommand("stop")
 end
 
-function door:updateRect()
-  if not self._img then
-    return
-  end
-  if self._img ~= self._oldImg and self._rect then
-    self._rect:release()
-    self._rect = nil
-  end
-  local wi, hi = self._img:getDimensions()
-  local w = wi / 3
-  local h = hi
-  local i = self:_getPose()
-  local j = 0
-  if not self._rect then
-    self._rect = love.graphics.newQuad(i * w, j * h, w, h, wi, hi)
-  else
-    self._rect:setViewport(i * w, j * h, w, h)
-  end
+function door:getFrames()
+  return 3
 end
 
-function door:hasAnimation()
-  return false
+function door:getPoses()
+  return 1
+end
+
+function door:_getPose()
+  return self._pattern
 end
 
 return door

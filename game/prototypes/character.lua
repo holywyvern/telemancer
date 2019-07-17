@@ -26,7 +26,7 @@ function character:updateAnimation(dt)
       self._animDelay = self._animDelay + 0.5 / self._speed
       self._pattern = (self._pattern + 1) % 4
     end
-  else
+  elseif self._clearsAnimation then
     self._pattern = 0
   end
 end
@@ -81,8 +81,8 @@ function character:updateRect()
     self._rect = nil
   end
   local wi, hi = self._img:getDimensions()
-  local w = wi / 3
-  local h = hi / 4
+  local w = wi / self:getFrames()
+  local h = hi / self:getPoses()
   local i = self:_getPose()
   local j = (self._d - 2) / 2
   if not self._rect then
@@ -103,6 +103,14 @@ function character:_getPose()
     return 2
   end
   return 1
+end
+
+function character:getFrames()
+  return 3
+end
+
+function character:getPoses()
+  return 4
 end
 
 function character:face(direction)
