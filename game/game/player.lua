@@ -16,7 +16,7 @@ end
 
 function player:setup(x, y, d)
   self:moveTo(x, y, d)
-  self._img = love.graphics.newImage("images/characters/hero.png")
+  self:setImage("hero")
   self._clearsAnimation = true
   player:updateRect()
 end

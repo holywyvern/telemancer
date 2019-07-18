@@ -19,6 +19,14 @@ function character:update(dt)
   self:updateRect()
 end
 
+function character:setImage(name)
+  if name then
+    self._img = love.graphics.newImage("images/characters/" .. name .. ".png")
+  else
+    self._img = nil
+  end
+end
+
 function character:updateAnimation(dt)
   if self:hasAnimation() then
     self._animDelay = self._animDelay - dt
