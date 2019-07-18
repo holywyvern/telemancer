@@ -3,10 +3,11 @@ local screen = require("lib.screen")
 local scene = require("managers.scene")
 
 local controls = require("config.controls")
+local engine = require("config.engine")
 
 function love.load()
   love.graphics.setDefaultFilter('linear','nearest')
-  screen.init(16 * 16, 16 * 9, true)
+  screen.init(engine.game.width, engine.game.height, true)
   scene:switch("splash")
 end
 

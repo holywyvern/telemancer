@@ -10,6 +10,7 @@ local oldUpdate = player.update
 
 function player:update(dt)
   oldUpdate(self, dt)
+  self:checkTouchEvents(-1)
   self:updateControls(dt)
 end
 
@@ -38,7 +39,23 @@ function player:updateControls(dt)
   end
 end
 
+local oldMove = player.move
+
+function player:move(d)
+  local triggered = false
+  self:face(d)
+  if self:canAct() then
+    triggered = self:checkTouchEvents(d)
+  end
+  if not triggered then
+    oldMove(self, d)
+  end
+end
+
 function player:checkSolidEvents()
+  if interpreter:isRunning() then
+    return false
+  end  
   local map = require("game.map")
   local x, y = map:_calculatePosition(self._x, self._y, self._d)
   for _, event in ipairs(map:getEventsAt(x, y)) do
@@ -46,6 +63,23 @@ function player:checkSolidEvents()
       event:call()
     end
   end
+end
+
+function player:checkTouchEvents(d)
+  if interpreter:isRunning() then
+    return false
+  end
+  d = d or self._d
+  local triggered = false
+  local map = require("game.map")
+  local x, y = map:_calculatePosition(self._x, self._y, d)
+  for _, event in ipairs(map:getEventsAt(x, y)) do
+    if event._tactile then
+      event:call()
+      triggered = true
+    end
+  end
+  return triggered
 end
 
 function player:canAct()

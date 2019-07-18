@@ -16,12 +16,14 @@ function door:create(name, image, position, destination)
   newDoor._destination = destination
   newDoor._interactive = true
   newDoor._solid = true
+  newDoor._tactile = true
   return newDoor
 end
 
-function door:call()
+function door:callOnce()
+  print("called")
   player = player or require("game.player")
-  interpreter:addCommand("start")
+  interpreter:startWork()
     interpreter:addCommand("changeSolid", self, false)
     interpreter:addCommand("pose", self, 1)
     interpreter:addCommand("wait", 0.1)

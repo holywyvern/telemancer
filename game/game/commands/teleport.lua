@@ -5,6 +5,7 @@ local engine = require("config.engine")
 local scene = require("managers.scene")
 
 local map = require("game.map")
+local player = require("game.player")
 
 local command = Command:extend()
 

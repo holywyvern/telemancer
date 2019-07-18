@@ -14,4 +14,7 @@ end
 function command:update(dt)
 end
 
+function command:draw()
+end
+
 return command

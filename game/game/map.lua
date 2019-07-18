@@ -1,4 +1,7 @@
 local sti = require("lib.sti")
+local newCamera = require("lib.stalkerx")
+
+local engine = require("config.engine")
 
 local player = require("game.player")
 local interpreter = require("game.interpreter")
@@ -17,6 +20,8 @@ function map:setup(name)
     self:loadData()
     self:loadEvents()
   end
+	self._cam = newCamera(nil, nil, engine.game.width, engine.game.height)
+	self._cam:setBounds(0, 0, self:getDimensions())  
 end
 
 function map:loadData()
@@ -30,7 +35,8 @@ end
 function map:loadEvents()
   events = {}
   characters = { player }
-  local eventData = require("data.events." .. currentMap)
+  local file = "data/events/" .. currentMap .. ".lua"
+  local eventData = assert(love.filesystem.load(file))()
   for _, event in ipairs(eventData) do
     events[#events + 1] = event
     characters[#characters + 1] = event

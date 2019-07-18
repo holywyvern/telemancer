@@ -1,3 +1,5 @@
 local Camera = require("lib.stalkerx")
 
-return Camera(nil, nil, 16 * 16, 16 * 9)
+local engine = require("config.engine")
+
+return Camera(nil, nil, engine.game.width, engine.game.height)
