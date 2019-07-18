@@ -8,7 +8,8 @@ function audio:clear()
   bgm = {}
 end
 
-function audio:playSe(name)
+function audio:playSe(name, volume)
+  volume = volume or 1
   local src = se[name]
   if src and src:isPlaying() then
     src = love.audio.newSource("audio/se/" .. name, "static")
@@ -16,6 +17,7 @@ function audio:playSe(name)
     src = love.audio.newSource("audio/se/" .. name, "static")
     se[name] = src
   end
+  src:setVolume(volume)
   src:play()
 end
 

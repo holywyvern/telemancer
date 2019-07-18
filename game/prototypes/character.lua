@@ -33,6 +33,9 @@ function character:updateAnimation(dt)
     while self._animDelay < 0 do
       self._animDelay = self._animDelay + 0.5 / self._speed
       self._pattern = (self._pattern + 1) % 4
+      if self:isMoving() then
+        self:playStep()
+      end
     end
   elseif self._clearsAnimation then
     self._pattern = 0

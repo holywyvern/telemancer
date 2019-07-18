@@ -1,5 +1,7 @@
 local interpreter = require("game.interpreter")
 
+local audio = require("managers.audio")
+
 local character = require("prototypes.character")
 
 local controls = require("config.controls")
@@ -90,6 +92,14 @@ function player:canAct()
     return false
   end
   return true
+end
+
+function player:playStep()
+  audio:playSe("steps/" .. self:stepFilename() .. ".wav", 0.3)
+end
+
+function player:stepFilename()
+  return "any"
 end
 
 return player
