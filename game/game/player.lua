@@ -99,6 +99,13 @@ function player:playStep()
 end
 
 function player:stepFilename()
+  local map = require("game.map")
+  for _, tile in ipairs(map:tilesAt(self._x, self._y)) do
+    local stepName = tile.properties and tile.properties.stepName
+    if stepName then
+      return stepName
+    end
+  end
   return "any"
 end
 

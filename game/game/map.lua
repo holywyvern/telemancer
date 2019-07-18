@@ -129,4 +129,15 @@ function map:getEventsAt(x, y)
   return result
 end
 
+function map:tilesAt(x, y)
+  local result = {}
+  for _, layer in ipairs(data.layers) do
+    local data = layer and layer.data
+    if data and data[y] and data[y][x] then
+      result[#result + 1] = data[y][x]
+    end
+  end
+  return result
+end
+
 return map

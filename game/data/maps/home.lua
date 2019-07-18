@@ -36,7 +36,14 @@ return {
       properties = {},
       terrains = {},
       tilecount = 210,
-      tiles = {}
+      tiles = {
+        {
+          id = 10,
+          properties = {
+            ["stepName"] = "dirt"
+          }
+        }
+      }
     }
   },
   layers = {
