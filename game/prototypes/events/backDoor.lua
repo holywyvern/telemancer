@@ -16,7 +16,7 @@ function backDoor:create(name, position, destination)
   return newDoor
 end
 
-function backDoor:callOnce()
+function backDoor:call()
   interpreter:startWork()
     interpreter:addCommand("teleport", self._destination)
     interpreter:addCommand("wait", 0.2)

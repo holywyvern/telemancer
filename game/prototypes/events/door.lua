@@ -20,8 +20,7 @@ function door:create(name, image, position, destination)
   return newDoor
 end
 
-function door:callOnce()
-  print("called")
+function door:call()
   player = player or require("game.player")
   interpreter:startWork()
     interpreter:addCommand("changeSolid", self, false)
