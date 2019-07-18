@@ -4,6 +4,8 @@ local event = require("prototypes.event")
 
 local backDoor = event:extend()
 
+local fade = require("prototypes.transitions.fade")
+
 local player
 
 function backDoor:create(name, position, destination)
@@ -18,7 +20,7 @@ end
 
 function backDoor:call()
   interpreter:startWork()
-    interpreter:addCommand("teleport", self._destination)
+    interpreter:addCommand("teleport", self._destination, fade:create(0.3))
     interpreter:addCommand("wait", 0.2)
   interpreter:addCommand("stop")
 end

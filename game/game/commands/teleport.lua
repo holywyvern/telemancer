@@ -11,8 +11,8 @@ local command = Command:extend()
 
 function command:create(destination, transition)
   local result = self:extend()
-  self._destination = destination
-  self._transition = transition
+  result._destination = destination
+  result._transition = transition
   return result
 end
 
@@ -24,7 +24,7 @@ function command:start()
 end
 
 function command:isRunning()
-  return self._transition and self.transition:isRunning()
+  return self._transition and self._transition:isRunning()
 end
 
 function command:takeScreenshot()

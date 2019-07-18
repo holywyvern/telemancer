@@ -2,6 +2,8 @@ local interpreter = require("game.interpreter")
 
 local event = require("prototypes.event")
 
+local fade = require("prototypes.transitions.fade")
+
 local door = event:extend()
 
 local player
@@ -33,7 +35,7 @@ function door:call()
     interpreter:addCommand("wait", 0.1)
     interpreter:addCommand("pose", self, 0)
     interpreter:addCommand("wait", 0.1)
-    interpreter:addCommand("teleport", self._destination)
+    interpreter:addCommand("teleport", self._destination, fade:create(0.3))
     interpreter:addCommand("changeSolid", self, true)
   interpreter:addCommand("stop")
 end
