@@ -54,6 +54,7 @@ function map:draw()
       layer:draw()
     end
   end
+  interpreter:draw()
 end
 
 function map:drawCharacters()

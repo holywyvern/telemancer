@@ -52,4 +52,10 @@ function interpreter:endWork()
   running = false
 end
 
+function interpreter:draw()
+  if currentCommand then
+    currentCommand:draw()
+  end
+end
+
 return interpreter

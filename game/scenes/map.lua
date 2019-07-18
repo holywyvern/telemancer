@@ -1,11 +1,12 @@
 local map = require("game.map")
 local Camera = require("lib.stalkerx")
 local player = require("game.player")
+local engine = require("config.engine")
 
 local scene = {}
 
 function scene:enter(previous, ...)
-	self._cam = Camera(nil, nil, 16 * 16, 16 * 9)
+	self._cam = Camera(nil, nil, engine.screen.width, engine.screen.height)
 	self._cam:setBounds(0, 0, map:getDimensions())
 end
 
