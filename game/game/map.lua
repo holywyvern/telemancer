@@ -4,7 +4,6 @@ local newCamera = require("lib.stalkerx")
 local engine = require("config.engine")
 
 local player = require("game.player")
-local interpreter = require("game.interpreter")
 
 local currentMap, data, events, characters
 
@@ -46,7 +45,6 @@ end
 
 function map:update(dt)
   data:update(dt)
-  interpreter:update(dt)
   for _, character in ipairs(characters) do
     character:update(dt)
   end
@@ -60,7 +58,6 @@ function map:draw()
       layer:draw()
     end
   end
-  interpreter:draw()
 end
 
 function map:drawCharacters()

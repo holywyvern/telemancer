@@ -1,6 +1,7 @@
 local map = require("game.map")
-
+local interpreter = require("game.interpreter")
 local player = require("game.player")
+
 local engine = require("config.engine")
 
 local scene = {}
@@ -9,6 +10,7 @@ function scene:update(dt)
 	map:update(dt)
 	map._cam:follow(player._realX, player._realY)
 	map._cam:update(dt)
+	interpreter:update(dt)
 end
 
 function scene:leave(next, ...)
@@ -19,8 +21,9 @@ function scene:draw()
 	map._cam:attach()
 		love.graphics.setColor(1, 1, 1, 1)
 		map:draw()
-		map._cam:detach()
-		map._cam:draw()
+	map._cam:detach()
+	map._cam:draw()
+	interpreter:draw()
 end
 
 return scene
