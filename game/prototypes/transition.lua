@@ -14,8 +14,9 @@ function transition:isRunning()
   return false
 end
 
-function transition:start(ss)
+function transition:start(ss, performTransition)
   self._ss = ss
+  self._performTransition = performTransition
 end
 
 return transition

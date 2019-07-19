@@ -9,22 +9,26 @@ function fade:create(t)
   return effect
 end
 
-function transition:update(dt)
+function fade:start(ss, performTransition)
+  self._ss = ss
+  performTransition()
+end
+
+function fade:update(dt)
   self._t = self._t - dt
   if self._t < 0 then
     self._t = 0
   end
-  print("trans")
 end
 
-function transition:draw()
+function fade:draw()
   love.graphics.push()
     love.graphics.setColor(1, 1, 1, self._t / self._start)
     love.graphics.draw(self._ss)
   love.graphics.pop()
 end
 
-function transition:isRunning()
+function fade:isRunning()
   return self._t > 0
 end
 

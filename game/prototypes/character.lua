@@ -198,4 +198,12 @@ function character:extend()
   return setmetatable({}, { __index = self })
 end
 
+function character:getDimensions()
+  if not self._img then
+    return 0, 0
+  end
+  local x, y = self._img:getDimensions()
+  return x / self:getFrames(), y / self:getPoses()
+end
+
 return character

@@ -18,9 +18,15 @@ end
 
 function command:start()
   if self._transition then
-    self._transition:start(self:takeScreenshot())
+    local this = self
+    local function performTransition()
+      this:changeDestination()
+    end
+    self._transition:start(self:takeScreenshot(), performTransition)
+  else
+    self:changeDestination()
   end
-  self:changeDestination()
+  
 end
 
 function command:isRunning()

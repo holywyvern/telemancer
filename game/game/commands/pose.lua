@@ -13,7 +13,6 @@ end
 function command:start()
   self._target._pattern = self._pattern
   self._target._d = self._direction
-  print(self._pattern)
 end
 
 return command
