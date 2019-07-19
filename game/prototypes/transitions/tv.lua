@@ -70,7 +70,6 @@ end
 
 function tv:drawOpening()
   love.graphics.push()
-    love.graphics.draw(self._ss)
     love.graphics.stencil(self._applyStencil, "replace", 1)
       love.graphics.setStencilTest("greater", 0)
       love.graphics.draw(back)
@@ -81,7 +80,6 @@ end
 
 function tv:drawTransition()
   love.graphics.push()
-    love.graphics.draw(self._ss)
     love.graphics.stencil(self._applyStencil, "replace", 1)
       love.graphics.setStencilTest("greater", 0)
       love.graphics.draw(back)
