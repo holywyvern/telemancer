@@ -366,14 +366,14 @@ Oh, BTW, require is not a keyword, it's a function, lua allows to skip `()` when
 
 ### Docs
 
-- (Reference Manual)[https://www.lua.org/manual/5.1/manual.html] (It's also in spanish)[https://www.lua.org/manual/5.1/es/manual.html]
+- [Reference Manual](https://www.lua.org/manual/5.1/manual.html) ([It's also in spanish](https://www.lua.org/manual/5.1/es/manual.html))
 
-- (A nice tutorial)[https://www.tutorialspoint.com/lua/]
+- [A nice tutorial](https://www.tutorialspoint.com/lua/)
 
 ### Strings
 
 Strings have the concatenation operator `..`  and there is no interpolation.
-One could add a format, and unlike tables, strings actually has as a metatable the (string)[https://www.lua.org/manual/5.1/manual.html#5.4] as an index.
+One could add a format, and unlike tables, strings actually has as a metatable the [string](https://www.lua.org/manual/5.1/manual.html#5.4) as an index.
 
 ## Project structure
 
