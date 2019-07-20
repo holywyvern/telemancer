@@ -377,42 +377,42 @@ One could add a format, and unlike tables, strings actually has as a metatable t
 
 ## Project structure
 
-/game
-  /audio
-    /se - All sound effects
-    /bgm - All music
-  /config
-    camera.lua - configuration for the game camera.
-    controls.lua - controls used by the player.
-    engine.lua - game screen size and other misc. config.
-  /data
-    /events
-      :map_id.lua - events used by the map, if no events return an empty array.
-    /maps
-      :map_name.lua - Used by the engine to load the map you can get one from any map, when you export it.
-      :map_name.tmx - Used by tiled, this is the source of the map.
-    /tilesets - All tilesets used by the game, for tiled metadata.
-    /game
-      /commands - Prototype for event commands used by the interpreter.
-      interpreter.lua - handles dynamic commands send by events when interacting.
-      map.lua - handles the current map, player and events.
-      player.lua - handles the player character.
-      setup.lua - Handles the initial player configuration.
-    /images
-      /characters - All character sprites
-        /doors - All existing doors
-        /system - Misc images, title should go here.
-        /tilesets - Tileset images used by the game.
-        /transitions - Images used by transitions.
-    /lib - Third party libraries
-    /managers
-      audio.lua - Handles game audio, pretty easily.
-      game.lua - Handles the game state It is stored on the save file.
-      save.lua - handles save files.
-      scene.lua - Handles scenes, scenes are states a game could be, title, map, menu, etc.
-    /prototypes - Handles prototypes, used for extend another objects
-      /events - Contains event types
-      /transitions - Contains transition types
-    /scenes - Contains all scenes used by the game
-  conf.lua - Has love2d's configuration before running the game. (called before the window is created)
-  main.lua - Game's entry point (called when the window is created)
+- /game
+  - /audio
+    - /se - All sound effects
+    - /bgm - All music
+  - /config
+    - camera.lua - configuration for the game camera.
+    - controls.lua - controls used by the player.
+    - engine.lua - game screen size and other misc. config.
+  - /data
+    - /events
+      - :map_id.lua - events used by the map, if no events return an empty array.
+    - /maps
+      - :map_name.lua - Used by the engine to load the map you can get one from any map, when you export it.
+      - :map_name.tmx - Used by tiled, this is the source of the map.
+    - /tilesets - All tilesets used by the game, for tiled metadata.
+    - /game
+      - /commands - Prototype for event commands used by the interpreter.
+      - interpreter.lua - handles dynamic commands send by events when interacting.
+      - map.lua - handles the current map, player and events.
+      - player.lua - handles the player character.
+      - setup.lua - Handles the initial player configuration.
+    - /images
+      - /characters - All character sprites
+        - /doors - All existing doors
+        - /system - Misc images, title should go here.
+        - /tilesets - Tileset images used by the game.
+        - /transitions - Images used by transitions.
+    - /lib - Third party libraries
+    - /managers
+      - audio.lua - Handles game audio, pretty easily.
+      - game.lua - Handles the game state It is stored on the save file.
+      - save.lua - handles save files.
+      - scene.lua - Handles scenes, scenes are states a game could be, title, map, menu, etc.
+    - /prototypes - Handles prototypes, used for extend another objects
+      - /events - Contains event types
+      - /transitions - Contains transition types
+    - /scenes - Contains all scenes used by the game
+  - conf.lua - Has love2d's configuration before running the game. (called before the window is created)
+  - main.lua - Game's entry point (called when the window is created)
