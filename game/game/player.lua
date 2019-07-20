@@ -95,7 +95,7 @@ function player:canAct()
 end
 
 function player:playStep()
-  audio:playSe("steps/" .. self:stepFilename() .. ".wav", 0.3)
+  audio:playSe("steps/" .. self:stepFilename() .. ".wav", { volume = 0.3 })
 end
 
 function player:stepFilename()
