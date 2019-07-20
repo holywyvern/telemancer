@@ -21,7 +21,7 @@ You can append the .love file to the love executable, because zip headers are at
 
 GDD is [here](https://docs.google.com/document/d/1npqmgQECE7_RG5HE7KtymN_MsfhiOCtO6AVrZNtExVA/edit?usp=sharing)
 
-## Some gotchas the lua
+## Some gotchas of lua
 
 ### Be careful of gloval variables
 
@@ -307,7 +307,7 @@ end
 
 local x, y, z = func() -- only x has value, all the others are `nil`
 ```
-
+ 
 ### Let's go META
 
 Seriusly, now it's the final part of the lightning fast lua tutorial for programmers :tm:.
@@ -369,3 +369,50 @@ Oh, BTW, require is not a keyword, it's a function, lua allows to skip `()` when
 - (Reference Manual)[https://www.lua.org/manual/5.1/manual.html] (It's also in spanish)[https://www.lua.org/manual/5.1/es/manual.html]
 
 - (A nice tutorial)[https://www.tutorialspoint.com/lua/]
+
+### Strings
+
+Strings have the concatenation operator `..`  and there is no interpolation.
+One could add a format, and unlike tables, strings actually has as a metatable the (string)[https://www.lua.org/manual/5.1/manual.html#5.4] as an index.
+
+## Project structure
+
+/game
+  /audio
+    /se - All sound effects
+    /bgm - All music
+  /config
+    camera.lua - configuration for the game camera.
+    controls.lua - controls used by the player.
+    engine.lua - game screen size and other misc. config.
+  /data
+    /events
+      :map_id.lua - events used by the map, if no events return an empty array.
+    /maps
+      :map_name.lua - Used by the engine to load the map you can get one from any map, when you export it.
+      :map_name.tmx - Used by tiled, this is the source of the map.
+    /tilesets - All tilesets used by the game, for tiled metadata.
+    /game
+      /commands - Prototype for event commands used by the interpreter.
+      interpreter.lua - handles dynamic commands send by events when interacting.
+      map.lua - handles the current map, player and events.
+      player.lua - handles the player character.
+      setup.lua - Handles the initial player configuration.
+    /images
+      /characters - All character sprites
+        /doors - All existing doors
+        /system - Misc images, title should go here.
+        /tilesets - Tileset images used by the game.
+        /transitions - Images used by transitions.
+    /lib - Third party libraries
+    /managers
+      audio.lua - Handles game audio, pretty easily.
+      game.lua - Handles the game state It is stored on the save file.
+      save.lua - handles save files.
+      scene.lua - Handles scenes, scenes are states a game could be, title, map, menu, etc.
+    /prototypes - Handles prototypes, used for extend another objects
+      /events - Contains event types
+      /transitions - Contains transition types
+    /scenes - Contains all scenes used by the game
+  conf.lua - Has love2d's configuration before running the game. (called before the window is created)
+  main.lua - Game's entry point (called when the window is created)
