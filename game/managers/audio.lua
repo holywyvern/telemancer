@@ -1,5 +1,5 @@
 local se = {}
-local bgms = {}
+local bgm = {}
 
 local playingBgms = {}
 
@@ -15,7 +15,7 @@ local function getAudioOptions(options)
   options.volume = options.volume or 1
   options.pitch = options.pitch or 1
   options.index = options.index or 1
-  return options  
+  return options
 end
 
 local function setOptions(src, options)
