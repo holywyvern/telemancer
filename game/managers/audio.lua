@@ -42,8 +42,8 @@ function audio:playBgm(name, options)
   if src and src:isPlaying() then
     src:stop()
   end
-  src = bgm[name] or love.audio.newSource("audio/bgm/" .. name, "stream")
-  bgm[name] = src
+  src = bgms[name] or love.audio.newSource("audio/bgm/" .. name, "stream")
+  bgms[name] = src
   playingBgms[options.index] = src
   src:setLooping(true)
   setOptions(src, options)
