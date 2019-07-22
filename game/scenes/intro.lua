@@ -236,6 +236,7 @@ function scene:drawPush()
   local tw = self._font:getWidth(txt) + 1
   local x, y = math.floor((engine.game.width - tw) / 2), 120
   local a = math.abs(math.sin(self._t * 1.3))
+  love.graphics.setFont(self._font)
   love.graphics.setColor(0.3, 0.3, 0.3, a)
   love.graphics.print(txt, x + 1, y + 1)
   love.graphics.setColor(1, 1, 1, a)
