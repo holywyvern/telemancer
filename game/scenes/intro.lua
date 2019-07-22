@@ -26,16 +26,19 @@ function scene:enter(previous, ...)
     bodyQuad = love.graphics.newQuad(0, 0, 64, 32, car:getDimensions()),
     wheelQuad = love.graphics.newQuad(64, 16, 16, 16, car:getDimensions())
   }
+  self._sky = love.graphics.newImage("images/intro/sky.png")
+  self._clouds = love.graphics.newImage("images/intro/clouds.png")
+  self._buildingsBack = love.graphics.newImage("images/intro/buildings_back.png")
   audio:playBgm('intro.mp3')
 end
 
 function scene:update(dt)
-  self._ox = self._ox + 32 * dt
   self._t = self._t + dt
   self['update' .. self._state](self, dt)
   self._bgSpeed = 1 + self._speed * dt
   self._rSpeed = self._rSpeed + self._accel * dt / 4
   self._r = self._r - self._rSpeed * dt
+  self._ox = self._ox + 4 * self._speed * dt
 end
 
 function scene:updateStart(dt)
@@ -96,14 +99,35 @@ function scene:draw()
 end
 
 function scene:drawBackground()
+  self:drawSky()
+  self:drawClouds()
+  self:drawBuildings()
   self:drawStreet()
+end
+
+function scene:drawSky()
+  love.graphics.draw(self._sky)
+end
+
+function scene:drawClouds()
+  local w = self._clouds:getDimensions()
+  local ox = (self._ox * 0.1) % w
+  love.graphics.draw(self._clouds, - ox)
+  love.graphics.draw(self._clouds, w - ox)
+end
+
+function scene:drawBuildings()
+  local w = self._buildingsBack:getDimensions()
+  local ox = (self._ox * 0.3) % w
+  love.graphics.draw(self._buildingsBack, - ox)
+  love.graphics.draw(self._buildingsBack, w - ox)  
 end
 
 function scene:drawStreet()
   love.graphics.setColor(1, 1, 1, 1)
   local ox = self._ox
   local speed = self._bgSpeed
-  love.graphics.draw(self._street, -((ox * speed) % 32), engine.game.height - self._street:getHeight())  
+  love.graphics.draw(self._street, -(ox % 32), engine.game.height - self._street:getHeight())  
 end
 
 function scene:drawCar()
