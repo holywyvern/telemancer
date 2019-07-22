@@ -26,3 +26,11 @@ end
 function love.resize(width, height)
 	screen.update(width, height)
 end
+
+function love.keypressed(k)
+  if k == 'escape' then
+    love.event.quit()
+  elseif k == 'f12' then
+    love.event.quit( "restart" )
+  end
+end

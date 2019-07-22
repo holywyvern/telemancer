@@ -50,4 +50,18 @@ function audio:playBgm(name, options)
   src:play()
 end
 
+function audio:playBgmOnce(name, options)
+  options = getAudioOptions(options)
+  local src = playingBgms[options.index]
+  if src and src:isPlaying() then
+    src:stop()
+  end
+  src = bgms[name] or love.audio.newSource("audio/bgm/" .. name, "stream")
+  bgms[name] = src
+  playingBgms[options.index] = src
+  src:setLooping(false)
+  setOptions(src, options)
+  src:play()  
+end
+
 return audio
