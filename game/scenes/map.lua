@@ -8,6 +8,10 @@ local base = require("prototypes.scene")
 
 local scene = base:extend()
 
+function scene:start()
+	map:playBgm()
+end
+
 function scene:update(dt)
 	map:update(dt)
 	map._cam:follow(player._realX, player._realY)

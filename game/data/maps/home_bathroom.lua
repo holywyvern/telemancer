@@ -10,7 +10,9 @@ return {
   tileheight = 16,
   nextlayerid = 6,
   nextobjectid = 1,
-  properties = {},
+  properties = {
+    ["playingBgm"] = "bathroom.mp3"
+  },
   tilesets = {
     {
       name = "telemancer",
@@ -36,7 +38,14 @@ return {
       properties = {},
       terrains = {},
       tilecount = 210,
-      tiles = {}
+      tiles = {
+        {
+          id = 10,
+          properties = {
+            ["stepName"] = "dirt"
+          }
+        }
+      }
     }
   },
   layers = {

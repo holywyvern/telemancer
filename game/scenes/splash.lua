@@ -58,7 +58,7 @@ function scene:nextScene()
     return 'title'
   else
     game:clear()
-    return 'intro'
+    return 'map'
   end
 end
 

@@ -39,7 +39,8 @@ end
 function audio:playBgm(name, options)
   options = getAudioOptions(options)
   local src = playingBgms[options.index]
-  if src and src:isPlaying() then
+  local different = src ~= bgms[name]
+  if src and different then
     src:stop()
   end
   src = bgms[name] or love.audio.newSource("audio/bgm/" .. name, "stream")

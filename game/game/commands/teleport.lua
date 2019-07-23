@@ -39,6 +39,7 @@ end
 
 function command:changeDestination()
   map:setup(self._destination.map)
+  map:playBgm()
   player:moveTo(unpack(self._destination.pos))
 end
 

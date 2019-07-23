@@ -10,7 +10,9 @@ return {
   tileheight = 16,
   nextlayerid = 8,
   nextobjectid = 1,
-  properties = {},
+  properties = {
+    ["playingBgm"] = "home.mp3"
+  },
   tilesets = {
     {
       name = "telemancer",

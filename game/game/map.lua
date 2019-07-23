@@ -5,6 +5,8 @@ local engine = require("config.engine")
 
 local player = require("game.player")
 
+local audio = require("managers.audio")
+
 local currentMap, data, events, characters
 
 local map = {}
@@ -21,6 +23,12 @@ function map:setup(name)
   end
 	self._cam = newCamera(nil, nil, engine.game.width, engine.game.height)
 	self._cam:setBounds(0, 0, self:getDimensions())  
+end
+
+function map:playBgm()
+  if data.properties.playingBgm then
+    audio:playBgm(data.properties.playingBgm)
+  end
 end
 
 function map:loadData()
