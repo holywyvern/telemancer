@@ -4,7 +4,7 @@ local base = require("prototypes.scene")
 
 local scene = base:extend()
 
-function scene:start(previous, ...)
+function scene:enter(previous, ...)
 	game:clear()
 end
 

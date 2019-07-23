@@ -11,7 +11,7 @@ local scene = base:extend()
 local PI = 3.1415
 local TAU = 2 * PI
 
-function scene:start(previous, ...)
+function scene:enter(previous, ...)
   self._ox = 0
   self._street = love.graphics.newImage("images/intro/street.png")
   self._speed = 1
@@ -34,7 +34,6 @@ function scene:start(previous, ...)
   self._clouds = love.graphics.newImage("images/intro/clouds.png")
   self._buildingsBack = love.graphics.newImage("images/intro/buildings_back.png")
   self._buildingsFront = love.graphics.newImage("images/intro/buildings_front.png")
-  audio:playBgmOnce('intro.mp3')
   local eye = love.graphics.newImage("images/intro/eye.png")
   local w, h = eye:getDimensions()
   self._logo = {
@@ -48,6 +47,10 @@ function scene:start(previous, ...)
     h = h
   }
   self._logo.eyeQuad = love.graphics.newQuad(0, 0, w / 4, h, w, h)
+end
+
+function scene:start()
+  audio:playBgmOnce('intro.mp3')
 end
 
 function scene:update(dt)

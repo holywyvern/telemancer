@@ -5,6 +5,8 @@ local scene = require("managers.scene")
 local controls = require("config.controls")
 local engine = require("config.engine")
 
+local fade = require("prototypes.transitions.fade")
+
 function love.load()
   love.graphics.setDefaultFilter('linear','nearest')
   screen.init(engine.game.width, engine.game.height, true)
@@ -18,8 +20,9 @@ function love.update(dt)
 end
 
 function love.draw()
+  love.graphics.clear(0, 0, 0)
   screen.apply()
-  scene:drawScene()
+    scene:drawScene()
   screen.cease()
 end
 

@@ -34,14 +34,7 @@ function command:isRunning()
 end
 
 function command:takeScreenshot()
-  local ss = love.graphics.newCanvas(engine.screen.width, engine.screen.height)
-  local canvas = love.graphics.getCanvas()
-  love.graphics.setCanvas(ss)
-  love.graphics.push()
-    scene:emit('draw')
-  love.graphics.pop()
-  love.graphics.setCanvas(canvas)
-  return ss
+  return require("managers.scene"):takeScreenshot()
 end
 
 function command:changeDestination()

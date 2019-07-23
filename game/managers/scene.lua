@@ -1,10 +1,8 @@
 local roomy = require("lib.roomy")
 
-local manager = roomy.new()
+local engine = require("config.engine")
 
-local oldSwitch = manager.switch
-local oldPush = manager.push
-local oldEmit = manager.emit
+local manager = roomy.new()
 
 local function setupOptions(options)
   options = options or {}
@@ -19,11 +17,10 @@ function manager:switch(screen, options)
   options = setupOptions(options)
   local this = self
   local function call()
-    print(options.transition, screen)
 		local previous = this.stack[#this.stack]
 		this:emit('leave', screen, options)
 		this.stack[#this.stack] = screen
-		this:emit('enter', previous or false, options)
+    this:emit('enter', previous or false, options)
 	end
 	table.insert(self.queue, {call, options})
 end
@@ -36,7 +33,7 @@ function manager:push(screen, options)
 		local previous = this.stack[#this.stack]
 		this:emit('pause', screen, options)
 		this.stack[#this.stack + 1] = screen
-		this:emit('enter', previous or false, options)
+    this:emit('enter', previous or false, options)
 	end  
 	table.insert(self.queue, {call, options})
 end
@@ -55,10 +52,12 @@ function manager:apply()
 end
 
 function manager:takeScreenshot()
-  local ss = love.graphics.newCanvas(engine.screen.width, engine.screen.height)
+  local ss = love.graphics.newCanvas(engine.game.width, engine.game.height)
   local canvas = love.graphics.getCanvas()
   love.graphics.setCanvas(ss)
   love.graphics.push()
+    love.graphics.clear(0, 0, 0)
+    love.graphics.setColor(1, 1, 1, 1)
     self:emit('draw')
   love.graphics.pop()
   love.graphics.setCanvas(canvas)
@@ -68,15 +67,24 @@ end
 function manager:updateScene(dt)
   if self:inTransition() then
     self._transition:update(dt)
+    if not self:inTransition() then
+      self:emit('start')
+    end
     return
   end
   self:emit('update', dt)
 end
 
 function manager:drawScene()
-  self:emit('draw')
+  love.graphics.push()
+    love.graphics.setColor(1, 1, 1, 1)
+    self:emit('draw')
+  love.graphics.pop()
   if self:inTransition() then
-    self._transition:draw()
+    love.graphics.push()
+      love.graphics.setColor(1, 1, 1, 1)
+      self._transition:draw()
+    love.graphics.pop()
   else
     self._transition = nil
   end

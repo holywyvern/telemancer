@@ -5,10 +5,9 @@ function scene:extend()
 end
 
 function scene:enter(previous, options)
-  self:start(previous, options)
 end
 
-function scene:start(previous, options)
+function scene:start()
 end
 
 function scene:leave(previous, options)
