@@ -14,12 +14,12 @@ end
 function love.update(dt)
   controls:update(dt)
   scene:apply()
-  scene:emit('updateScene', dt)
+  scene:updateScene(dt)
 end
 
 function love.draw()
   screen.apply()
-  scene:emit('drawScene')
+  scene:drawScene()
   screen.cease()
 end
 
