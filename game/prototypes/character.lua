@@ -1,6 +1,8 @@
 local character = { 
   _x = 0,
   _y = 0,
+  _realX = 0,
+  _realY = 0,
   _z = 0,
   _d = 0,
   _img = nil,
@@ -51,7 +53,7 @@ function character:updateMovement(dt)
     return
   end
   map = map or require("game.map")
-  local tx, ty = map:getTileSize()  
+  local tx, ty = map:getTileSize()
   local mx = self:_calculateMoveSpeed(dt, tx)
   local my = self:_calculateMoveSpeed(dt, ty)
   self._realX = self:_updateMovementAxis(mx, self._x * tx, self._realX)

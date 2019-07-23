@@ -22,7 +22,8 @@ function map:setup(name)
     self:loadEvents()
   end
 	self._cam = newCamera(nil, nil, engine.game.width, engine.game.height)
-	self._cam:setBounds(0, 0, self:getDimensions())  
+  self._cam:setBounds(0, 0, self:getDimensions())
+  self:update(0)  
 end
 
 function map:playBgm()
