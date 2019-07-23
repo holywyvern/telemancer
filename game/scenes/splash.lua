@@ -3,9 +3,11 @@ local game = require("managers.game")
 
 local manager = require("managers.scene")
 
-local scene = {}
+local base = require("prototypes.scene")
 
-function scene:enter(previous, ...)
+local scene = base:extend()
+
+function scene:start(previous, ...)
   self.state = 'enter'
   self.timing = 0
   self.splash = love.graphics.newImage("images/system/splash.png")

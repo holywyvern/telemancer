@@ -1,8 +1,10 @@
 local game = require("managers.game")
 
-local scene = {}
+local base = require("prototypes.scene")
 
-function scene:enter(previous, ...)
+local scene = base:extend()
+
+function scene:start(previous, ...)
 	game:clear()
 end
 

@@ -4,7 +4,9 @@ local player = require("game.player")
 
 local engine = require("config.engine")
 
-local scene = {}
+local base = require("prototypes.scene")
+
+local scene = base:extend()
 
 function scene:update(dt)
 	map:update(dt)

@@ -4,12 +4,14 @@ local game = require("managers.game")
 local controls = require("config.controls")
 local engine = require("config.engine")
 
-local scene = {}
+local base = require("prototypes.scene")
+
+local scene = base:extend()
 
 local PI = 3.1415
 local TAU = 2 * PI
 
-function scene:enter(previous, ...)
+function scene:start(previous, ...)
   self._ox = 0
   self._street = love.graphics.newImage("images/intro/street.png")
   self._speed = 1
