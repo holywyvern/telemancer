@@ -1,10 +1,13 @@
 local audio = require("managers.audio")
 local game = require("managers.game")
+local manager = require("managers.scene")
 
 local controls = require("config.controls")
 local engine = require("config.engine")
 
 local base = require("prototypes.scene")
+
+local fadeInOut = require("prototypes.transitions.fadeInOut")
 
 local scene = base:extend()
 
@@ -127,13 +130,15 @@ function scene:updateOpenEye(dt)
     self._logo.eyeQuad:setViewport(frame * w, 0, w, h)
   else
     self._push = true
-    self._state = 'PushButton'
+    self._state = "PushButton"
   end
 end
 
 function scene:updatePushButton(dt)
+  if controls:pressed("accept") then
+    manager:switch("map", { transition = fadeInOut:create(.3) })
+  end
 end
-
 
 function scene:leave(next, ...)
 	-- destroy entities and cleanup resources

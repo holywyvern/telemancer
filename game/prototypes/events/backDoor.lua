@@ -4,7 +4,7 @@ local event = require("prototypes.event")
 
 local backDoor = event:extend()
 
-local fade = require("prototypes.transitions.fade")
+local fade = require("prototypes.transitions.fadeInOut")
 
 local player
 

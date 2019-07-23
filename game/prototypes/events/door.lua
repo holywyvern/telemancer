@@ -2,7 +2,7 @@ local interpreter = require("game.interpreter")
 
 local event = require("prototypes.event")
 
-local fade = require("prototypes.transitions.fade")
+local fade = require("prototypes.transitions.fadeInOut")
 
 local door = event:extend()
 
