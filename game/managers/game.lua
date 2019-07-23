@@ -9,7 +9,9 @@ local game = {}
 function game:clear()
   data = {
     switches = {},
-    variables = {},
+    variables = {
+      chapter = 1
+    },
     items = {}
   }
   map:setup('home')
