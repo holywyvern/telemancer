@@ -35,8 +35,8 @@ end
 
 function save:deserialize(data)
   game:data(data.game)
-  audio:loadSave(data)
   map:loadSave(data)
+  audio:loadSave(data)
 end
 
 function save:exists()
