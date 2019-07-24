@@ -3,6 +3,7 @@ local time   = require("lib.time")
 local game   = require("managers.game")
 local audio  = require("managers.audio")
 local map    = require("game.map")
+local player = require("game.player")
 
 local save = {}
 
@@ -31,12 +32,14 @@ function save:serialize(data)
   data.game = game:data()
   audio:dumpSave(data)
   map:dumpSave(data)
+  player:dumpSave(data)
 end
 
 function save:deserialize(data)
   game:data(data.game)
   map:loadSave(data)
   audio:loadSave(data)
+  player:loadSave(data)
 end
 
 function save:exists()

@@ -27,6 +27,7 @@ function character:setImage(name)
   else
     self._img = nil
   end
+  self._imgName = name
 end
 
 function character:updateAnimation(dt)

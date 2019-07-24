@@ -109,4 +109,14 @@ function player:stepFilename()
   return "any"
 end
 
+function player:dumpSave(dump)
+  dump.player = {self._imgName, {self._x, self._y, self._d}}
+end
+
+function player:loadSave(dump)
+  local data = dump.player
+  player:setImage(data[1])
+  player:moveTo(unpack(data[2]))
+end
+
 return player
