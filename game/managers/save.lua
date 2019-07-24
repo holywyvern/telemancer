@@ -1,6 +1,8 @@
 local binser = require("lib.binser")
 local time   = require("lib.time")
 local game   = require("managers.game")
+local audio  = require("managers.audio")
+local map    = require("game.map")
 
 local save = {}
 
@@ -27,10 +29,14 @@ end
 
 function save:serialize(data)
   data.game = game:data()
+  audio:dumpSave(data)
+  map:dumpSave(data)
 end
 
 function save:deserialize(data)
   game:data(data.game)
+  audio:loadSave(data)
+  map:loadSave(data)
 end
 
 function save:exists()

@@ -2,6 +2,7 @@ local se = {}
 local bgms = {}
 
 local playingBgms = {}
+local playingBgmsNames = {}
 
 local audio = {}
 
@@ -46,6 +47,7 @@ function audio:playBgm(name, options)
   src = bgms[name] or love.audio.newSource("audio/bgm/" .. name, "stream")
   bgms[name] = src
   playingBgms[options.index] = src
+  playingBgmsNames[options.index] = {name, options, true}
   src:setLooping(true)
   setOptions(src, options)
   src:play()
@@ -60,9 +62,30 @@ function audio:playBgmOnce(name, options)
   src = bgms[name] or love.audio.newSource("audio/bgm/" .. name, "stream")
   bgms[name] = src
   playingBgms[options.index] = src
+  playingBgmsNames[options.index] = {name, options, false}
   src:setLooping(false)
   setOptions(src, options)
   src:play()  
+end
+
+function audio:dumpSave(dump)
+  local save = {}
+  for key, data in pairs(playingBgmsNames) do
+    local src = playingBgms[key]
+    save[key] = {data, src:tell()}
+  end
+  dump.audio = save
+end
+
+function audio:loadSave(dump)
+  for key, data in pairs(playingBgmsNames) do
+      if data[1][3] then
+        self:playBgm(unpack(data[1]))
+      else
+        self:playBgmOnce(unpack(data[1]))
+      end
+      playingBgms[key]:seek(data[2])
+  end
 end
 
 return audio

@@ -146,4 +146,23 @@ function map:tilesAt(x, y)
   return result
 end
 
+function map:dumpSave(dump)
+  local data = {}
+  dump.map = data
+  dump.events = {}
+  for i, event in ipairs(events) do
+    dump.events[i] = {event._x, event._y, event._d }
+  end
+end
+
+function map:loadSave(dump)
+  local data = dump.map
+  map:setup(data.name)
+  for i, position in ipairs(data.events) do
+    if events[i] then
+      events[i]:moveTo(unpack(position))
+    end
+  end
+end
+
 return map
