@@ -1,6 +1,7 @@
 local audio = require("managers.audio")
 local game = require("managers.game")
 local manager = require("managers.scene")
+local save = require("managers.save")
 
 local controls = require("config.controls")
 local engine = require("config.engine")
@@ -136,6 +137,7 @@ end
 
 function scene:updatePushButton(dt)
   if controls:pressed("accept") then
+    save:dump()
     manager:switch("map", { transition = fadeInOut:create(.3) })
   end
 end

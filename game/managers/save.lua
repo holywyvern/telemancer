@@ -36,10 +36,10 @@ function save:serialize(data)
 end
 
 function save:deserialize(data)
-  for i in pairs(data) do print(i) end
   game:data(data.game)
-  map:loadSave(data)
   audio:loadSave(data)
+  map:loadSave(data)
+  map:playBgm()
   player:loadSave(data)
 end
 

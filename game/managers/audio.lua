@@ -78,7 +78,7 @@ function audio:dumpSave(dump)
 end
 
 function audio:loadSave(dump)
-  for key, data in pairs(playingBgmsNames) do
+  for key, data in pairs(dump.audio) do
       if data[1][3] then
         self:playBgm(unpack(data[1]))
       else
