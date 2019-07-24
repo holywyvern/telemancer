@@ -1,5 +1,6 @@
 local save = require("managers.save")
 local game = require("managers.game")
+local audio = require("managers.audio")
 
 local fade = require("prototypes.transitions.fade")
 
@@ -29,9 +30,17 @@ function scene:updateEntering(dt)
   if self.timing >= 1 then
     self.state = 'stay'
     self.timing = 2
+    self:playSe()
   else
     self.timing = self.timing + dt * 2
   end  
+end
+
+function scene:playSe()
+  audio:playSe("natalios.mp3", { volume = 0.9 })
+  audio:playSe("natalias.mp3", { volume = 0.9 })
+  audio:playSe("natalies.mp3", { volume = 0.6 })
+  audio:playSe("natalies2.mp3", { volume = 0.6 })
 end
 
 function scene:updateStaying(dt)
