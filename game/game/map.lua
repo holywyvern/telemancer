@@ -149,9 +149,10 @@ end
 function map:dumpSave(dump)
   local data = {}
   dump.map = data
-  dump.events = {}
+  data.name = currentMap
+  data.events = {}
   for i, event in ipairs(events) do
-    dump.events[i] = {event._x, event._y, event._d }
+    data.events[i] = {event._x, event._y, event._d }
   end
 end
 

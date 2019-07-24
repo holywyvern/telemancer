@@ -20,7 +20,7 @@ end
 function save:load()
   local contents, error = love.filesystem.read(filename)
   if contents then
-    local data, size = binser.deserialize(file)
+    local data, size = binser.deserialize(contents)
     self:deserialize(data[2])
     return data[1]
   else
@@ -36,6 +36,7 @@ function save:serialize(data)
 end
 
 function save:deserialize(data)
+  for i in pairs(data) do print(i) end
   game:data(data.game)
   map:loadSave(data)
   audio:loadSave(data)

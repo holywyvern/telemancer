@@ -1,5 +1,7 @@
 local audio = require("managers.audio")
 local game = require("managers.game")
+local manager = require("managers.scene")
+local save = require("managers.save")
 
 local base = require("prototypes.scene")
 
@@ -84,6 +86,8 @@ function scene:updatePushButton(dt)
 	if controls:pressed("accept") then
 		self._state = 'SelectOption'
 		self._push = false
+		save:load()
+		manager:switch("map")
 	end
 end
 
