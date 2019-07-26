@@ -20,12 +20,12 @@ return {
       filename = "../tilesets/telemancer.tsx",
       tilewidth = 16,
       tileheight = 16,
-      spacing = 1,
+      spacing = 0,
       margin = 0,
       columns = 10,
       image = "../../images/tilesets/all.png",
-      imagewidth = 169,
-      imageheight = 369,
+      imagewidth = 160,
+      imageheight = 528,
       tileoffset = {
         x = 0,
         y = 0
@@ -37,7 +37,7 @@ return {
       },
       properties = {},
       terrains = {},
-      tilecount = 210,
+      tilecount = 330,
       tiles = {
         {
           id = 10,
