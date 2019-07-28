@@ -24,6 +24,9 @@ function door:create(name, image, position, destination)
 end
 
 function door:call()
+  if not self._destination then
+    return
+  end
   player = player or require("game.player")
   interpreter:startWork()
     interpreter:addCommand("se", "doors/" .. self._imgName .. "/open.wav")

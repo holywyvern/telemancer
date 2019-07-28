@@ -15,13 +15,13 @@ return {
     {
       name = "telemancer",
       firstgid = 1,
-      filename = "../../tilesets/telemancer.tsx",
+      filename = "../tilesets/telemancer.tsx",
       tilewidth = 16,
       tileheight = 16,
       spacing = 0,
       margin = 0,
       columns = 10,
-      image = "../../../images/tilesets/all.png",
+      image = "../../images/tilesets/all.png",
       imagewidth = 160,
       imageheight = 1120,
       tileoffset = {
