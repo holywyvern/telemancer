@@ -17,13 +17,13 @@ return {
     {
       name = "telemancer",
       firstgid = 1,
-      filename = "../tilesets/telemancer.tsx",
+      filename = "../../tilesets/telemancer.tsx",
       tilewidth = 16,
       tileheight = 16,
       spacing = 0,
       margin = 0,
       columns = 10,
-      image = "../../images/tilesets/all.png",
+      image = "../../../images/tilesets/all.png",
       imagewidth = 160,
       imageheight = 1120,
       tileoffset = {
@@ -40,9 +40,105 @@ return {
       tilecount = 700,
       tiles = {
         {
+          id = 2,
+          properties = {
+            ["stepName"] = "stone"
+          }
+        },
+        {
           id = 10,
           properties = {
             ["stepName"] = "dirt"
+          }
+        },
+        {
+          id = 11,
+          properties = {
+            ["stepName"] = "sand"
+          }
+        },
+        {
+          id = 12,
+          properties = {
+            ["stepName"] = "stone"
+          }
+        },
+        {
+          id = 19,
+          properties = {
+            ["stepName"] = "dirt"
+          }
+        },
+        {
+          id = 29,
+          properties = {
+            ["stepName"] = "dirt"
+          }
+        },
+        {
+          id = 39,
+          properties = {
+            ["stepName"] = "dirt"
+          }
+        },
+        {
+          id = 49,
+          properties = {
+            ["stepName"] = "dirt"
+          }
+        },
+        {
+          id = 59,
+          properties = {
+            ["stepName"] = "dirt"
+          }
+        },
+        {
+          id = 69,
+          properties = {
+            ["stepName"] = "dirt"
+          }
+        },
+        {
+          id = 128,
+          properties = {
+            ["stepName"] = "dirt"
+          }
+        },
+        {
+          id = 129,
+          properties = {
+            ["stepName"] = "sand"
+          }
+        },
+        {
+          id = 136,
+          properties = {
+            ["stepName"] = "sand"
+          }
+        },
+        {
+          id = 137,
+          properties = {
+            ["stepName"] = "sand"
+          }
+        },
+        {
+          id = 138,
+          properties = {
+            ["stepName"] = "dirt"
+          }
+        },
+        {
+          id = 139,
+          properties = {
+            ["stepName"] = "sand"
+          }
+        },
+        {
+          id = 167,
+          properties = {
+            ["stepName"] = "stone"
           }
         }
       }

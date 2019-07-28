@@ -23,7 +23,7 @@ return {
       columns = 10,
       image = "../../../images/tilesets/all.png",
       imagewidth = 160,
-      imageheight = 864,
+      imageheight = 1120,
       tileoffset = {
         x = 0,
         y = 0
@@ -35,12 +35,108 @@ return {
       },
       properties = {},
       terrains = {},
-      tilecount = 540,
+      tilecount = 700,
       tiles = {
+        {
+          id = 2,
+          properties = {
+            ["stepName"] = "stone"
+          }
+        },
         {
           id = 10,
           properties = {
             ["stepName"] = "dirt"
+          }
+        },
+        {
+          id = 11,
+          properties = {
+            ["stepName"] = "sand"
+          }
+        },
+        {
+          id = 12,
+          properties = {
+            ["stepName"] = "stone"
+          }
+        },
+        {
+          id = 19,
+          properties = {
+            ["stepName"] = "dirt"
+          }
+        },
+        {
+          id = 29,
+          properties = {
+            ["stepName"] = "dirt"
+          }
+        },
+        {
+          id = 39,
+          properties = {
+            ["stepName"] = "dirt"
+          }
+        },
+        {
+          id = 49,
+          properties = {
+            ["stepName"] = "dirt"
+          }
+        },
+        {
+          id = 59,
+          properties = {
+            ["stepName"] = "dirt"
+          }
+        },
+        {
+          id = 69,
+          properties = {
+            ["stepName"] = "dirt"
+          }
+        },
+        {
+          id = 128,
+          properties = {
+            ["stepName"] = "dirt"
+          }
+        },
+        {
+          id = 129,
+          properties = {
+            ["stepName"] = "sand"
+          }
+        },
+        {
+          id = 136,
+          properties = {
+            ["stepName"] = "sand"
+          }
+        },
+        {
+          id = 137,
+          properties = {
+            ["stepName"] = "sand"
+          }
+        },
+        {
+          id = 138,
+          properties = {
+            ["stepName"] = "dirt"
+          }
+        },
+        {
+          id = 139,
+          properties = {
+            ["stepName"] = "sand"
+          }
+        },
+        {
+          id = 167,
+          properties = {
+            ["stepName"] = "stone"
           }
         }
       }
@@ -115,13 +211,13 @@ return {
       encoding = "lua",
       data = {
         213, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 291, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 466, 467, 468, 469, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 476, 477, 478, 479, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 281, 0, 0, 281, 476, 477, 478, 479, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 486, 487, 488, 489, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 496, 497, 498, 499, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 291, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 291, 0, 0, 281, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         233, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
       }
     },
