@@ -1,5 +1,6 @@
 local sti = require("lib.sti")
 local newCamera = require("lib.stalkerx")
+local moonshine = require("lib.moonshine")
 
 local engine = require("config.engine")
 
@@ -16,10 +17,12 @@ local function sortCharacter(a, b)
 end
 
 function map:setup(name)
+  self._chain = nil
   if currentMap ~= name then
     currentMap = name
     self:loadData()
     self:loadEvents()
+    self:setupChain()
   end
 	self._cam = newCamera(nil, nil, engine.game.width, engine.game.height)
   self._cam:setBounds(0, 0, self:getDimensions())
@@ -50,6 +53,34 @@ function map:loadEvents()
     characters[#characters + 1] = event
     events[event._name] = event
   end
+end
+
+function map:setupChain()
+  if not self._chain then
+    self._chain = moonshine(moonshine.effects.filmgrain)
+                    .chain(moonshine.effects.scanlines)
+                    .chain(moonshine.effects.chromasep)
+                    
+    self._chain.parameters = {
+      scanlines = { width = 1, frequency = engine.game.height, opacity = 0.3 },
+      chromasep = { angle = 0.3, radius = 3 }
+    }
+  end
+  self:enableShaders()
+end
+
+function map:disableShaders()
+  if not self._chain then return end
+  self._chain.disable("desaturate", "chromasep", "scanlines", "filmgrain")
+end
+
+function map:enableShaders()
+  if not self._chain then return end
+  if data.properties.tvWorld then
+    self._chain.enable("desaturate", "chromasep", "scanlines", "filmgrain")
+  else
+    self:disableShaders()
+  end  
 end
 
 function map:update(dt)

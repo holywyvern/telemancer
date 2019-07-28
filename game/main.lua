@@ -7,6 +7,8 @@ local engine = require("config.engine")
 
 local fade = require("prototypes.transitions.fade")
 
+local map = require("game.map")
+
 function love.load()
   love.graphics.setDefaultFilter('linear','nearest')
   screen.init(engine.game.width, engine.game.height, true)
@@ -19,11 +21,19 @@ function love.update(dt)
   scene:updateScene(dt)
 end
 
-function love.draw()
+local function drawChain()
   love.graphics.clear(0, 0, 0)
   screen.apply()
     scene:drawScene()
-  screen.cease()
+  screen.cease()  
+end
+
+function love.draw()
+  if map._chain then
+    map._chain(drawChain)
+  else
+    drawChain()
+  end
 end
 
 function love.resize(width, height)

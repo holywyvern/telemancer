@@ -2,6 +2,8 @@ local save = require("managers.save")
 local game = require("managers.game")
 local audio = require("managers.audio")
 
+local map = require("game.map")
+
 local fade = require("prototypes.transitions.fade")
 
 local manager = require("managers.scene")
@@ -14,6 +16,10 @@ function scene:enter(previous, ...)
   self.state = 'enter'
   self.timing = 0
   self.splash = love.graphics.newImage("images/system/splash.png")
+end
+
+function scene:start()
+  map:disableShaders()
 end
 
 function scene:update(dt)

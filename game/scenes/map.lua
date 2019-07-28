@@ -10,6 +10,7 @@ local scene = base:extend()
 
 function scene:start()
 	map:playBgm()
+	map:enableShaders()
 end
 
 function scene:update(dt)
@@ -25,8 +26,8 @@ end
 
 function scene:draw()
 	map._cam:attach()
-		love.graphics.setColor(1, 1, 1, 1)
-		map:draw()
+	love.graphics.setColor(1, 1, 1, 1)
+	map:draw()
 	map._cam:detach()
 	map._cam:draw()
 	interpreter:draw()

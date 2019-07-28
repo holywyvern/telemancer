@@ -11,7 +11,8 @@ return {
   nextlayerid = 8,
   nextobjectid = 1,
   properties = {
-    ["playingBgm"] = "home.mp3"
+    ["playingBgm"] = "home.mp3",
+    ["tvWorld"] = true
   },
   tilesets = {
     {

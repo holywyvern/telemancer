@@ -3,6 +3,8 @@ local game = require("managers.game")
 local manager = require("managers.scene")
 local save = require("managers.save")
 
+local map = require("game.map")
+
 local controls = require("config.controls")
 local engine = require("config.engine")
 
@@ -54,6 +56,7 @@ function scene:enter(previous, ...)
 end
 
 function scene:start()
+  map:disableShaders()
   audio:playBgmOnce('intro.mp3')
 end
 
