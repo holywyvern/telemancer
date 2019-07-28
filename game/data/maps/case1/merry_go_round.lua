@@ -10,7 +10,9 @@ return {
   tileheight = 16,
   nextlayerid = 12,
   nextobjectid = 1,
-  properties = {},
+  properties = {
+    ["tvWorld"] = true
+  },
   tilesets = {
     {
       name = "telemancer",

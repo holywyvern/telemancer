@@ -12,7 +12,7 @@ return {
   nextobjectid = 1,
   properties = {
     ["playingBgm"] = "home.mp3",
-    ["tvWorld"] = true
+    ["tvWorld"] = false
   },
   tilesets = {
     {

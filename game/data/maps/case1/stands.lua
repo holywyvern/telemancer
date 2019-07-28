@@ -10,7 +10,9 @@ return {
   tileheight = 16,
   nextlayerid = 6,
   nextobjectid = 1,
-  properties = {},
+  properties = {
+    ["tvWorld"] = true
+  },
   tilesets = {
     {
       name = "telemancer",
@@ -38,9 +40,105 @@ return {
       tilecount = 700,
       tiles = {
         {
+          id = 2,
+          properties = {
+            ["stepName"] = "stone"
+          }
+        },
+        {
           id = 10,
           properties = {
             ["stepName"] = "dirt"
+          }
+        },
+        {
+          id = 11,
+          properties = {
+            ["stepName"] = "sand"
+          }
+        },
+        {
+          id = 12,
+          properties = {
+            ["stepName"] = "stone"
+          }
+        },
+        {
+          id = 19,
+          properties = {
+            ["stepName"] = "dirt"
+          }
+        },
+        {
+          id = 29,
+          properties = {
+            ["stepName"] = "dirt"
+          }
+        },
+        {
+          id = 39,
+          properties = {
+            ["stepName"] = "dirt"
+          }
+        },
+        {
+          id = 49,
+          properties = {
+            ["stepName"] = "dirt"
+          }
+        },
+        {
+          id = 59,
+          properties = {
+            ["stepName"] = "dirt"
+          }
+        },
+        {
+          id = 69,
+          properties = {
+            ["stepName"] = "dirt"
+          }
+        },
+        {
+          id = 128,
+          properties = {
+            ["stepName"] = "dirt"
+          }
+        },
+        {
+          id = 129,
+          properties = {
+            ["stepName"] = "sand"
+          }
+        },
+        {
+          id = 136,
+          properties = {
+            ["stepName"] = "sand"
+          }
+        },
+        {
+          id = 137,
+          properties = {
+            ["stepName"] = "sand"
+          }
+        },
+        {
+          id = 138,
+          properties = {
+            ["stepName"] = "dirt"
+          }
+        },
+        {
+          id = 139,
+          properties = {
+            ["stepName"] = "sand"
+          }
+        },
+        {
+          id = 167,
+          properties = {
+            ["stepName"] = "stone"
           }
         }
       }
