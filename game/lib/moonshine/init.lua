@@ -28,7 +28,7 @@ local moonshine = {}
 
 moonshine.draw_shader = function(buffer, shader)
   local front, back = buffer()
-  love.graphics.setCanvas(front)
+  love.graphics.setCanvas({front, stencil = true})
   love.graphics.clear()
   if shader ~= love.graphics.getShader() then
     love.graphics.setShader(shader)
@@ -63,7 +63,7 @@ moonshine.chain = function(w,h,effect)
     local fg_r, fg_g, fg_b, fg_a = love.graphics.getColor()
 
     -- draw scene to front buffer
-    love.graphics.setCanvas((buffer())) -- parens are needed: take only front buffer
+    love.graphics.setCanvas({(buffer()), stencil = true}) -- parens are needed: take only front buffer
     love.graphics.clear(love.graphics.getBackgroundColor())
     func(...)
 
@@ -81,7 +81,7 @@ moonshine.chain = function(w,h,effect)
 
     -- present result
     love.graphics.setShader()
-    love.graphics.setCanvas(canvas)
+    love.graphics.setCanvas({ canvas, stencil = true })
     love.graphics.draw(front,0,0)
 
     -- restore state

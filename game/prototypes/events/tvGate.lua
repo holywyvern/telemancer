@@ -21,6 +21,7 @@ function tvGate:call()
   player = player or require("game.player")
   interpreter:startWork()
   interpreter:addCommand("teleport", self._destination, tv:create())
+  self:callExtraCommands()
   interpreter:addCommand("stop")
 end
 

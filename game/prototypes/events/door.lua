@@ -43,6 +43,7 @@ function door:call()
     interpreter:addCommand("wait", 0.1)
     interpreter:addCommand("teleport", self._destination, fade:create(0.3))
     interpreter:addCommand("changeSolid", self, true)
+    self:callExtraCommands()
   interpreter:addCommand("stop")
 end
 

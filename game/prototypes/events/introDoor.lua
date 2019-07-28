@@ -24,6 +24,7 @@ function door:call()
     interpreter:addCommand("pose", self, 0)
     interpreter:addCommand("wait", 0.1)
     interpreter:addCommand("changeSolid", self, true)
+    self:callExtraCommands()
   interpreter:addCommand("scene", "intro", { transition = fade:create(0.3) })
 end
 

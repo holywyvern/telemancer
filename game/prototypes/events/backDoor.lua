@@ -22,6 +22,7 @@ function backDoor:call()
   interpreter:startWork()
     interpreter:addCommand("teleport", self._destination, fade:create(0.3))
     interpreter:addCommand("wait", 0.2)
+    self:callExtraCommands()
   interpreter:addCommand("stop")
 end
 
