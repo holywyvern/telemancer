@@ -23,7 +23,7 @@ return {
       columns = 10,
       image = "../../../images/tilesets/all.png",
       imagewidth = 160,
-      imageheight = 528,
+      imageheight = 1120,
       tileoffset = {
         x = 0,
         y = 0
@@ -35,7 +35,7 @@ return {
       },
       properties = {},
       terrains = {},
-      tilecount = 330,
+      tilecount = 700,
       tiles = {
         {
           id = 10,
@@ -161,7 +161,7 @@ return {
       encoding = "lua",
       data = {
         0, 0, 0, 0, 0, 0, 223, 0, 0, 223, 0, 0, 0, 0, 0, 0,
-        0, 0, 294, 295, 0, 0, 0, 0, 0, 0, 0, 0, 294, 295, 0, 0,
+        214, 0, 294, 295, 0, 0, 0, 0, 0, 0, 0, 0, 294, 295, 0, 214,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,

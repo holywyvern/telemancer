@@ -25,7 +25,7 @@ return {
       columns = 10,
       image = "../../images/tilesets/all.png",
       imagewidth = 160,
-      imageheight = 528,
+      imageheight = 1120,
       tileoffset = {
         x = 0,
         y = 0
@@ -37,7 +37,7 @@ return {
       },
       properties = {},
       terrains = {},
-      tilecount = 330,
+      tilecount = 700,
       tiles = {
         {
           id = 10,
