@@ -14,7 +14,7 @@ function game:clear()
     },
     items = {}
   }
-  map:setup('home')
+  map:setup(setup.map.start)
   player:setup(
     setup.player.start.x, setup.player.start.y, setup.player.start.direction
   )  

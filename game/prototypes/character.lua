@@ -101,8 +101,12 @@ function character:updateRect()
   local j = (self._d - 2) / 2
   if not self._rect then
     self._rect = love.graphics.newQuad(i * w, j * h, w, h, wi, hi)
+    j = ((10 - self._d) - 2) / 2
+    self._reflectionRect = love.graphics.newQuad(i * w, j * h, w, h, wi, hi)
   else
     self._rect:setViewport(i * w, j * h, w, h)
+    j = ((10 - self._d) - 2) / 2
+    self._reflectionRect:setViewport(i * w, j * h, w, h)
   end
 end
 
@@ -176,6 +180,18 @@ function character:draw()
   end
   local x, y, w, h = self._rect:getViewport()
   love.graphics.draw(self._img, self._rect, self._realX - w / 2, self._realY, 0, 1, 1, w / 2, h )
+end
+
+function character:drawReflection(offset)
+  if not self._img or not self._reflectionRect then
+    return
+  end
+  love.graphics.push()
+    love.graphics.setColor(1, 1, 1, 0.6)
+    local x, y, w, h = self._rect:getViewport()
+    love.graphics.draw(self._img, self._reflectionRect, self._realX - w / 2, self._realY - offset, 0, -1, 1, w / 2, h )
+    love.graphics.setColor(1, 1, 1, 1)
+  love.graphics.pop()
 end
 
 function character:moveTo(x, y, d)

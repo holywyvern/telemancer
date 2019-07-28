@@ -63,6 +63,8 @@ function map:draw()
   for _, layer in ipairs(data.layers) do
     if layer.name == 'characters' then
       self:drawCharacters()
+    elseif layer.name == 'reflections' then
+      self:drawReflections(layer.properties.offset or 16)
     elseif layer.name ~= 'collitions' then
       layer:draw()
     end
@@ -73,6 +75,13 @@ function map:drawCharacters()
   table.sort(characters, sortCharacter)
   for _, character in ipairs(characters) do
     character:draw()
+  end
+end
+
+function map:drawReflections(offset)
+  table.sort(characters, sortCharacter)
+  for _, character in ipairs(characters) do
+    character:drawReflection(offset)
   end
 end
 

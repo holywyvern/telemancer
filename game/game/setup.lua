@@ -5,5 +5,8 @@ return {
       y = 7,
       direction = 8
     }
+  },
+  map = {
+    start = 'home'
   }
 }
