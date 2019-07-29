@@ -3,6 +3,8 @@ local engine = require("config.engine")
 
 local audio = require("managers.audio")
 local manager = require("managers.scene")
+local save = require("managers.save")
+local game = require("managers.game")
 
 local w, h = engine.game.width, engine.game.height
 
@@ -106,6 +108,8 @@ function scene:updateFalling(dt)
   if self._childY < h then
     self._childY = self._childY + dt * 32
   else
+    game:variable("case1", 1)
+    save:dump()
     manager:switch("map")
   end
 end

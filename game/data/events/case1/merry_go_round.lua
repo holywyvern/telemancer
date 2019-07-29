@@ -1,6 +1,8 @@
 local interpreter = require("game.interpreter")
 local player = require("game.player")
 
+local game = require("managers.game")
+
 local fade = require("prototypes.transitions.fade")
 
 local backDoor = require("prototypes.events.backDoor")
@@ -11,6 +13,9 @@ local events = {
 }
 
 function events.onEnter()
+  if game:variable("case1") > 0 then
+    return
+  end
   interpreter:startWork()
     local i = 0
     if player._y > 6 then
