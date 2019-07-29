@@ -15,7 +15,7 @@ end
 
 function scene:update(dt)
 	map:update(dt)
-	map._cam:follow(player._realX, player._realY)
+	map._cam:follow(math.ceil(player._realX), math.ceil(player._realY))
 	map._cam:update(dt)
 	interpreter:update(dt)
 end
