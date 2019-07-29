@@ -8,7 +8,7 @@ local player = require("game.player")
 
 local audio = require("managers.audio")
 
-local currentMap, data, events, characters
+local currentMap, data, events, characters, eventData
 
 local map = {}
 
@@ -26,7 +26,10 @@ function map:setup(name)
   end
 	self._cam = newCamera(nil, nil, engine.game.width, engine.game.height)
   self._cam:setBounds(0, 0, self:getDimensions())
-  self:update(0)  
+  self:update(0)
+  if eventData and eventData.onEnter then
+    eventData.onEnter()
+  end
 end
 
 function map:playBgm()
@@ -47,7 +50,7 @@ function map:loadEvents()
   events = {}
   characters = { player }
   local file = "data/events/" .. currentMap .. ".lua"
-  local eventData = assert(love.filesystem.load(file))()
+  eventData = assert(love.filesystem.load(file))()
   for _, event in ipairs(eventData) do
     events[#events + 1] = event
     characters[#characters + 1] = event

@@ -48,8 +48,11 @@ end
 function scene:updateFace1(dt)
   if self._faceOpacity < 1 then
     self._faceOpacity = self._faceOpacity + dt
-    self._faceOpacity2 = 1 - self._faceOpacity
+    if self._oneLoop then
+      self._faceOpacity2 = 1 - self._faceOpacity
+    end
   else
+    self._oneLoop = true
     self._state = 'Face2'
   end
 end

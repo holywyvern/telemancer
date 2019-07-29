@@ -38,9 +38,9 @@ function command:takeScreenshot()
 end
 
 function command:changeDestination()
+  player:moveTo(unpack(self._destination.pos))
   map:setup(self._destination.map)
   map:playBgm()
-  player:moveTo(unpack(self._destination.pos))
 end
 
 function command:update(dt)
