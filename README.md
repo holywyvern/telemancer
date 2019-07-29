@@ -284,6 +284,12 @@ a(b(), 1) -- Prints '2 1'
 a(b(), b()) -- Prints '2 2 3'
 ```
 
+You can use `()` to use only a single argument:
+
+```rb
+a(b(), (b())) -- Prints '2 2'
+```
+
 All loop conditions only check for the first return value, so:
 
 ```lua
