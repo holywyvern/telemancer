@@ -5,6 +5,8 @@ w-gaming Jam 2019
 
 Made with [love](https://love2d.org/)
 
+Maps are build with [Tiled](https://www.mapeditor.org/)
+
 ## Playing and building
 
 To build de game, with all contents inside the "game" folder, just grab all files and put them inside a zip file, then rename the file game.love
