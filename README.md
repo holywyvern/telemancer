@@ -230,9 +230,52 @@ obj.method = function(self, ...)
 end
 ```
 
-Notice than self is added, which is how lua likes to name the `this` argument.
+Notice than `self` is implicit, which is how lua likes to name the `this` argument.
 
-As always, some gotchas:
+### Calling functions
+
+Functions are first class citicens, so when a function is created, it can be accessed as just any variable
+
+```lua
+local func = function() ... end
+```
+
+is the same as:
+
+```lua
+local function func()
+   ...
+end
+```
+
+so you can call any funcion or move it to another variable:
+
+```lua
+local a = func
+a() -- will work
+```
+
+Functions doesn't pass self implicitly in definitions, so lua has some syntax sugar for that:
+
+```lua
+local obj = { name= 'table' }
+
+function obj:method()
+  print self.name
+end
+
+obj.method() -- Will throw an error as self is nil.
+
+obj.method(obj) -- Will work as expected.
+
+obj:method() -- Will work too, because : passes the caller as the first argument.
+
+obj:method(2) -- Will work, and is the same as obj.method(obj, 2)
+
+obj:method -- This is a syntax error, because : only works on function calls.
+```
+
+### As always, some gotchas
 
 - If you pass less arguments to a function it will still work, but it's arguments will be nil:
 
