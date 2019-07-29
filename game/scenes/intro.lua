@@ -70,7 +70,7 @@ function scene:update(dt)
 end
 
 function scene:updateStart(dt)
-  if self._t >= 23 then
+  if self._t >= 9 then
     self._accel = 16
     self._state = 'ShowCar'
   end
@@ -80,7 +80,7 @@ function scene:updateShowCar(dt)
   if self._car.x < 16 * 5 then
     self._speed = self._speed + self._accel * dt
     self._car.x = self._car.x + self._speed * dt
-  elseif self._t >= 41 then
+  elseif self._t >= 17 then
     self._accel = 16
     self._state = 'GoingMiddle'
   else
@@ -92,7 +92,7 @@ function scene:updateGoingMiddle(dt)
   if self._car.x < 16 * 9 then
     self._speed = self._speed + self._accel * dt
     self._car.x = self._car.x + self._speed * dt
-  elseif self._t >= 60 then
+  elseif self._t >= 30 then
     self._accel = 16
     self._state = 'GoingOut'
   else
@@ -104,7 +104,7 @@ function scene:updateGoingOut(dt)
   if self._car.x < engine.game.width + 64 then
     self._speed = self._speed + self._accel * dt
     self._car.x = self._car.x + self._speed * dt
-  elseif self._t >= 77 then
+  elseif self._t >= 37 then
     self._accel = 16
     self._state = 'ShowTitle'
   else
