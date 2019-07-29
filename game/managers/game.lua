@@ -31,7 +31,7 @@ function game:variable(id, value)
   if value ~= nil then
     data.variables[id] = value
   end
-  return data.variables[id]
+  return data.variables[id] or 0
 end
 
 function game:data(value)

@@ -62,6 +62,7 @@ function scene:updateFace2(dt)
     self._faceOpacity2 = self._faceOpacity2 + dt
     self._faceOpacity = 1 - self._faceOpacity2
   elseif self._t > 15 then
+    audio:playBgm("case1/circus.mp3")
     self._state = 'Jumpscare'
   else
     self._state = 'Face1'
