@@ -44,20 +44,22 @@ end
 
 function tv:updateTransition(dt)
   self._performTransition()
+  self._r = 0
+  self._t = 0
   self._state = 'Closing'
 end
 
 function tv:updateClosing(dt)
-  self._t = self._t - dt
-  self._r = 16 * (self._t * self._t)
-  if self._t <= 0 then
-    self._r = 0
+  self._t = self._t + dt
+  if self:isOpening() then
+    self._r = 16 * (self._t * self._t)
+  else
     self._state = 'Finished'
   end
 end
 
 function tv:isOpening()
-  return self._state == 'Opening' and self._r < max
+  return self._r < max
 end
 
 function tv:isRunning()
@@ -65,13 +67,26 @@ function tv:isRunning()
 end
 
 function tv:draw()
+  if self._state == 'Finished' then return end
   love.graphics.push()
-    love.graphics.stencil(self._applyStencil, "replace", 1)
-      love.graphics.setStencilTest("greater", 0)
+    love.graphics.stencil(self._applyStencil, self:getStencilType(), 1, false)
+      love.graphics.setStencilTest(self:getStencilComparison(), 0)
       love.graphics.draw(back)
     love.graphics.setStencilTest()
   love.graphics.pop()
 end
+
+function tv:getStencilType()
+  return "replace"
+end
+
+function tv:getStencilComparison()
+  if self._state == 'Closing' then
+    return "equal"
+  end
+  return "greater"
+end
+
 
 tv.drawClosing = tv.drawTransition
 
