@@ -17,8 +17,8 @@ local PI = 3.1415
 function tv:create()
   back = back or love.graphics.newImage("images/transitions/tv_back.png")
   local this = tv:extend()
-  this._r = 0
-  this._t = 0.5
+  this._r = 0.1
+  this._t = 0
   this._state = 'Opening'
   this._applyStencil = function()
     this:applyStencil()
@@ -34,27 +34,25 @@ function tv:update(dt)
 end
 
 function tv:updateOpening(dt)
+  self._t = self._t + dt
   if self:isOpening() then
-    self._r = self._r + 32 * dt
+    self._r = 16 * (self._t * self._t)
   else
     self._state = 'Transition'
   end
 end
 
 function tv:updateTransition(dt)
-  self._t = self._t - dt
-  if self._t <= 0 then
-    self._state = 'Closing'
-  end
+  self._performTransition()
+  self._state = 'Closing'
 end
 
 function tv:updateClosing(dt)
+  self._t = self._t - dt
+  self._r = 16 * (self._t * self._t)
   if self._r <= 0 then
     self._r = 0
     self._state = 'Finished'
-    self._performTransition()
-  else
-    self._r = self._r - 32 * dt
   end
 end
 
@@ -96,14 +94,14 @@ tv.drawClosing = tv.drawTransition
 function tv:applyStencil()
   love.graphics.setColor(1, 1, 1, 1)
   local r = self._r
-  local x, y = (w - (2 * self._r)) / 2, (h - r) / 2
+  local x, y = (w - (2 * self._r)) / 2, h / 2
   local start = y - r
   for i = start, y + r, 1 do
     local s = math.sin((i - start) * PI / (2 * r) )
     local n = i - start + PI * self._t
     local offset = (r / 4) * math.sin(8 * n * PI / r)
     local rw = 4 * r * s
-    love.graphics.rectangle("fill", x - offset - rw / 2, i, rw, 1)
+    love.graphics.rectangle("fill", x - offset + r - rw / 2, i, rw, 1)
   end
 end
 
