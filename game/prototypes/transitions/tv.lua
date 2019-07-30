@@ -15,7 +15,6 @@ local max = math.max(w, h)
 local PI = 3.1415
 
 function tv:create()
-  print("start")
   back = back or love.graphics.newImage("images/transitions/tv_back.png")
   local this = tv:extend()
   this._r = 0.1
@@ -51,14 +50,14 @@ end
 function tv:updateClosing(dt)
   self._t = self._t - dt
   self._r = 16 * (self._t * self._t)
-  if self._r <= 0 then
+  if self._t <= 0 then
     self._r = 0
     self._state = 'Finished'
   end
 end
 
 function tv:isOpening()
-  return self._r < max
+  return self._state == 'Opening' and self._r < max
 end
 
 function tv:isRunning()
