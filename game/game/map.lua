@@ -26,10 +26,10 @@ function map:setup(name)
   end
 	self._cam = newCamera(nil, nil, engine.game.width, engine.game.height)
   self._cam:setBounds(0, 0, self:getDimensions())
-  self:update(0)
   if eventData and eventData.onEnter then
     eventData.onEnter()
-  end
+  end  
+  self:update(0)
 end
 
 function map:playBgm()
