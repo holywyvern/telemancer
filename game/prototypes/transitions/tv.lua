@@ -84,7 +84,7 @@ function tv:applyStencil()
   for i = start, y + r, 1 do
     local s = math.sin((i - start) * PI / (2 * r) )
     local n = i - start + PI * self._t
-    local offset = (r / 4) * math.sin(8 * n * PI / r)
+    local offset = 8 * math.sin(8 * n * PI / r)
     local rw = 4 * r * s
     love.graphics.rectangle("fill", x - offset + r - rw / 2, i, rw, 1)
   end
