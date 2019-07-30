@@ -232,7 +232,8 @@ function scene:drawLogo()
   local x, y = (engine.game.width - self._logo.w) / 2, 64
   love.graphics.draw(self._logo.eye, self._logo.eyeQuad, x, y)
   x, y = 0, 8
-  love.graphics.draw(self._logo.back, x + offset, y + offset)
+  love.graphics.setColor(1, 1, 1, self._logo.opacity  / 1.3)
+  love.graphics.draw(self._logo.back, x - offset, y - offset)
   love.graphics.draw(self._logo.front, x, y)
   love.graphics.setColor(1, 1, 1, 1)
 end
