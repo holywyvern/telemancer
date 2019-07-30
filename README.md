@@ -160,6 +160,30 @@ end
 
 You can of course, define your own iterators, se the iterator section if you want more.
 
+Numeric iterators also exists, and they are defined as:
+
+```lua
+for i=start,upto,step do
+end
+```
+
+Where start is the starting position of the loop, upto is the max value (included) and step is the increment.
+So
+
+```lua
+for i=1, 10, 1 do
+end
+```
+
+Goes from 1, upto to 10, incrementing 1 on each step, this makes it easier to define negative steps:
+
+```lua
+for i=10, 1, -2 do
+end
+```
+
+But it's not a typical programming for loop.
+
 ### Why sometimes it's obj.x and sometimes it's obj:x() ?
 
 Lua doesn't have methods, it just have tables with function attributes.

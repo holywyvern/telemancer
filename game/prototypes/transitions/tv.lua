@@ -8,6 +8,12 @@ local tv = transition:extend()
 
 local back
 
+local w, h = engine.game.width, engine.game.height
+
+local max = math.max(w, h)
+
+local PI = 3.1415
+
 function tv:create()
   back = back or love.graphics.newImage("images/transitions/tv_back.png")
   local this = tv:extend()
@@ -53,8 +59,7 @@ function tv:updateClosing(dt)
 end
 
 function tv:isOpening()
-  local w, h = player:getDimensions()
-  return self._r < w or self._r < h
+  return self._r < max
 end
 
 function tv:isRunning()
@@ -75,7 +80,6 @@ function tv:drawOpening()
       love.graphics.draw(back)
     love.graphics.setStencilTest()
   love.graphics.pop()
-  player:draw()
 end
 
 function tv:drawTransition()
@@ -83,7 +87,6 @@ function tv:drawTransition()
     love.graphics.stencil(self._applyStencil, "replace", 1)
       love.graphics.setStencilTest("greater", 0)
       love.graphics.draw(back)
-      player:draw()
     love.graphics.setStencilTest()
   love.graphics.pop()
 end
@@ -92,9 +95,16 @@ tv.drawClosing = tv.drawTransition
 
 function tv:applyStencil()
   love.graphics.setColor(1, 1, 1, 1)
-  local w, h = player:getDimensions()
-  local x, y = player._realX - w / 2, player._realY - h / 2
-  love.graphics.circle("fill", x, y, self._r)
+  local r = self._r
+  local x, y = (w - (2 * self._r)) / 2, (h - r) / 2
+  local start = y - r
+  for i = start, y + r, 1 do
+    local s = math.sin((i - start) * PI / (2 * r) )
+    local n = i - start + PI * self._t
+    local offset = (r / 4) * math.sin(8 * n * PI / r)
+    local rw = 4 * r * s
+    love.graphics.rectangle("fill", x - offset - rw / 2, i, rw, 1)
+  end
 end
 
 return tv
