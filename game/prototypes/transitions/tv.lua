@@ -15,6 +15,7 @@ local max = math.max(w, h)
 local PI = 3.1415
 
 function tv:create()
+  print("start")
   back = back or love.graphics.newImage("images/transitions/tv_back.png")
   local this = tv:extend()
   this._r = 0.1
@@ -65,22 +66,6 @@ function tv:isRunning()
 end
 
 function tv:draw()
-  local func = self["draw" .. self._state]
-  if func then
-    func(self)
-  end
-end
-
-function tv:drawOpening()
-  love.graphics.push()
-    love.graphics.stencil(self._applyStencil, "replace", 1)
-      love.graphics.setStencilTest("greater", 0)
-      love.graphics.draw(back)
-    love.graphics.setStencilTest()
-  love.graphics.pop()
-end
-
-function tv:drawTransition()
   love.graphics.push()
     love.graphics.stencil(self._applyStencil, "replace", 1)
       love.graphics.setStencilTest("greater", 0)
