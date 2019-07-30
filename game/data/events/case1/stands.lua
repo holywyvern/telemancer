@@ -9,6 +9,6 @@ local events = {
 }
 
 squad:create("squad1", {7, 24}, events)
-squad:create("squad1", {10, 13}, events)
+squad:create("squad2", {10, 13}, events)
 
 return events
