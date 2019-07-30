@@ -18,13 +18,14 @@ local events = {
   backDoor:create("tent_tp2", {4, 1}, { map="case1/tent_out", pos={14, 17} })
 }
 
-squad:create("squad_mirrors", {10, 45}, events)
-
-squad:create("squad_tent", {4, 2}, events)
-
-events[#events + 1] = clown:create("squad_tent_clown", {3, 2, 2})
-
 if game:variable("case1") < 1 then
+
+  squad:create("squad_mirrors", {10, 45}, events)
+
+  squad:create("squad_tent", {4, 2}, events)
+
+  events[#events + 1] = clown:create("squad_tent_clown", {3, 2, 2})
+
   squad:create("squad_nursery", {47, 35}, events)
   events[#events + 1] = clown:create("squad_nursery_clown2", {48, 36, 2})
 end
