@@ -1,6 +1,8 @@
 local backDoor = require("prototypes.events.backDoor")
 local squad = require("prototypes.clownSquad")
 
+local game = require("managers.game")
+
 local events = {
   backDoor:create("tp1", {8, 32}, { map="case1/entrance", pos={8, 2} }),
   backDoor:create("tp2", {9, 32}, { map="case1/entrance", pos={9, 2} }),
@@ -8,7 +10,9 @@ local events = {
   backDoor:create("tp4", {9, 1}, { map="case1/plaza", pos={25, 49} }),
 }
 
-squad:create("squad1", {7, 24}, events)
-squad:create("squad2", {10, 13}, events)
+if game:variable("case1") < 1 then
+  squad:create("squad1", {7, 24}, events)
+  squad:create("squad2", {10, 13}, events)
+end
 
 return events
