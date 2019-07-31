@@ -119,7 +119,7 @@ function map:drawReflections(offset)
   end
 end
 
-function map:isPassable(x, y, direction)
+function map:isPassable(x, y, direction, solid)
   local collitions = data.layers.collitions
   if not collitions then
     return true
@@ -130,6 +130,9 @@ function map:isPassable(x, y, direction)
   end
   if y < 1 or y > data.height then
     return false
+  end
+  if not solid then
+    return true
   end
   if map:_isASolidEventAt(x, y) then
     return false
