@@ -37,6 +37,7 @@ function tvGate:call()
   interpreter:startWork()
   interpreter:addCommand("teleport", self._destination, tv:create())
   self:callExtraCommands()
+  interpreter:addCommand("save")
   interpreter:addCommand("stop")
 end
 

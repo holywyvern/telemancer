@@ -10,6 +10,10 @@ local character = {
   _speed = 3,
   _frame = 0,
   _pattern = 0,
+  _opacity = 1,
+  _directFrame = false,
+  _i = 0,
+  _j = 0,
   _standingAnimation = false
 }
 
@@ -98,19 +102,30 @@ function character:updateRect()
   local w = wi / self:getFrames()
   local h = hi / self:getPoses()
   local i = self:_getPose()
-  local j = (self._d - 2) / 2
+  local d = self:_getDirection()
+  local j = (d - 2) / 2
   if not self._rect then
     self._rect = love.graphics.newQuad(i * w, j * h, w, h, wi, hi)
-    j = ((10 - self._d) - 2) / 2
+    j = ((10 - d) - 2) / 2
     self._reflectionRect = love.graphics.newQuad(i * w, j * h, w, h, wi, hi)
   else
     self._rect:setViewport(i * w, j * h, w, h)
-    j = ((10 - self._d) - 2) / 2
+    j = ((10 - d) - 2) / 2
     self._reflectionRect:setViewport(i * w, j * h, w, h)
   end
 end
 
+function character:_getDirection()
+  if self._directFrame then
+    return self._j * 2 + 2
+  end
+  return self._d
+end
+
 function character:_getPose()
+  if self._directFrame then
+    return self._i
+  end  
   if self._pattern == 0 then
     return 1
   elseif self._pattern == 1 then
@@ -149,8 +164,7 @@ end
 function character:move(direction)
   if self._d ~= direction then
     self:face(direction)
-    return
-  end  
+  end
   if not self:canMove(direction) then
     return
   end
@@ -167,7 +181,7 @@ end
 
 function character:canMove(direction)
   map = map or require("game.map")
-  return map:isPassable(self._x, self._y, direction)
+  return map:isPassable(self._x, self._y, direction, self._solid)
 end
 
 function character:canFace(direction)
@@ -179,6 +193,7 @@ function character:draw()
     return
   end
   local x, y, w, h = self._rect:getViewport()
+  love.graphics.setColor(1, 1, 1, self._opacity)
   love.graphics.draw(self._img, self._rect, self._realX - w / 2, self._realY, 0, 1, 1, w / 2, h )
 end
 
@@ -187,7 +202,7 @@ function character:drawReflection(offset)
     return
   end
   love.graphics.push()
-    love.graphics.setColor(1, 1, 1, 0.6)
+    love.graphics.setColor(1, 1, 1, self._opacity * 0.6)
     local x, y, w, h = self._rect:getViewport()
     love.graphics.draw(self._img, self._reflectionRect, self._realX - w / 2, self._realY - offset, 0, -1, 1, w / 2, h )
     love.graphics.setColor(1, 1, 1, 1)
@@ -223,6 +238,9 @@ function character:getDimensions()
   end
   local x, y = self._img:getDimensions()
   return x / self:getFrames(), y / self:getPoses()
+end
+
+function character:playStep()
 end
 
 return character

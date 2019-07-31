@@ -10,6 +10,8 @@ local player = character:extend()
 
 local oldUpdate = player.update
 
+player._solid = true
+
 function player:update(dt)
   oldUpdate(self, dt)
   self:checkTouchEvents(-1)
@@ -117,6 +119,10 @@ function player:loadSave(dump)
   local data = dump.player
   player:setImage(data[1])
   player:moveTo(unpack(data[2]))
+end
+
+function player:getPoses()
+  return 5
 end
 
 return player
