@@ -427,6 +427,57 @@ Be careful, if a value already exists in the table, it won't call your function.
 
 You can learn more, how to do operator overloading and many cool things looking at the [reference](https://www.lua.org/manual/5.1/manual.html#2.8).
 
+### Calling super
+
+There isn't a `super` keyword in Lua, but you can still call a parent's method if you override one.
+But you must keep an old reference to it somehow.
+
+For example:
+
+```lua
+local a = {}
+local b = setmetatable({}, { __index = a })
+
+function a:method()
+  print("a")
+end
+
+function b:method()
+  print("b")
+end
+
+b:method() -- Will print 'b'
+```
+
+But you can use a parent's function:
+
+```lua
+function b:method()
+  a.method(self) -- call it with . instead of : so you can pass self explicitly
+  print("b")
+end
+
+b:method() -- Will print first a, then b
+```
+
+This can used to wrap methods inside methods
+
+```lua
+function b:nested()
+  print("yahoo")
+end
+
+local nested = b.nested -- Accessing values is just using .
+
+function b:nested()
+  print("<wrap>")
+  nested(self) -- again, "self" must be given this way
+  print("</wrap>")
+end
+
+b:nested() -- <wrap>yahoo</wrap>
+```
+
 ### Require gotchas
 
 - You can write the file path as `'script/x/y/z.lua'` but usually, lua prefers this way of loading:
