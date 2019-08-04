@@ -7,7 +7,7 @@ local character = {
   _d = 0,
   _img = nil,
   _animDelay = 0,
-  _speed = 6,
+  _speed = 3,
   _frame = 0,
   _pattern = 0,
   _opacity = 1,
@@ -243,6 +243,47 @@ function character:getDimensions()
 end
 
 function character:playStep()
+end
+
+function character:rotate()
+  if     self._d == 2 then
+    self:face(6)
+  elseif self._d == 4 then
+    self:face(2)
+  elseif self._d == 6 then
+    self:face(8)
+  elseif self._d == 8 then
+    self:face(4)
+  end
+end
+
+function character:isLookingTo(char, max)
+  local d = math.abs(self._x - char._x) + math.abs(self._y - char._y)
+  if d > max then
+    return false
+  end
+  if self._d == 2 or self._d == 8 then
+    if self._x ~= char._x then
+      return false
+    end
+  end
+  if self._d == 4 or self._d == 6 then
+    if self._y ~= char._y then
+      return false
+    end
+  end
+  if self._d == 2 and self._y < char._y then
+    return true
+  end
+  if self._d == 8 and self._y > char._y then
+    return true
+  end
+  if self._d == 6 and self._x < char._x then
+    return true
+  end
+  if self._d == 4 and self._x > char._x then
+    return true
+  end
 end
 
 return character
