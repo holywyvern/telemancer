@@ -286,4 +286,10 @@ function character:isLookingTo(char, max)
   end
 end
 
+function character:realDistanceFrom(char)
+  local x = math.abs(self._realX - char._realX)
+  local y = math.abs(self._realY - char._realY)
+  return x + y
+end
+
 return character
