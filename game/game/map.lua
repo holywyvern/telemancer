@@ -54,7 +54,9 @@ function map:loadEvents()
   for _, event in ipairs(eventData) do
     events[#events + 1] = event
     characters[#characters + 1] = event
-    events[event._name] = event
+    if event._name then
+      events[event._name] = event
+    end
   end
 end
 

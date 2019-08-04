@@ -88,4 +88,12 @@ function audio:loadSave(dump)
   end
 end
 
+function audio:stopBgm()
+  for _, bgm in pairs(playingBgms) do
+    bgm:stop()
+  end
+  playingBgms = {}
+  playingBgmsNames = {}
+end
+
 return audio

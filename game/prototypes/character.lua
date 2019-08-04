@@ -7,13 +7,14 @@ local character = {
   _d = 0,
   _img = nil,
   _animDelay = 0,
-  _speed = 3,
+  _speed = 6,
   _frame = 0,
   _pattern = 0,
   _opacity = 1,
   _directFrame = false,
   _i = 0,
   _j = 0,
+  _priority = 0,
   _standingAnimation = false
 }
 
@@ -185,7 +186,7 @@ function character:canMove(direction)
 end
 
 function character:canFace(direction)
-  return true
+  return not self._fixDirection
 end
 
 function character:draw()
@@ -195,6 +196,7 @@ function character:draw()
   local x, y, w, h = self._rect:getViewport()
   love.graphics.setColor(1, 1, 1, self._opacity)
   love.graphics.draw(self._img, self._rect, self._realX - w / 2, self._realY, 0, 1, 1, w / 2, h )
+  love.graphics.setColor(1, 1, 1, 1)
 end
 
 function character:drawReflection(offset)

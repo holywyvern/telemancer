@@ -11,6 +11,11 @@ function interpreter:isRunning()
   return running
 end
 
+function interpreter:clearQueue()
+  pendingCommands = {}
+  currentCommand = nil
+end
+
 function interpreter:update(dt)
   if not self:isWorking() then
     self:_getNextCommand()
