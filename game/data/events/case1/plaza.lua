@@ -6,6 +6,8 @@ local clown = require("prototypes.events.happyClown")
 
 local squad = require("prototypes.clownSquad")
 
+local drop = require("prototypes.events.drop")
+
 local events = {
   backDoor:create("nursery_tp1", {50, 35}, { map="case1/nursery_out", pos={2, 7} }),
   backDoor:create("nursery_tp2", {50, 36}, { map="case1/nursery_out", pos={2, 8} }),  
@@ -16,7 +18,8 @@ local events = {
   backDoor:create("merry_go_round_tp1", {50, 12}, { map="case1/merry_go_round", pos={2, 6} }),
   backDoor:create("merry_go_round_tp2", {50, 13}, { map="case1/merry_go_round", pos={2, 7} }),
   backDoor:create("tent_tp1", {3, 1}, { map="case1/tent_out", pos={13, 17} }),
-  backDoor:create("tent_tp2", {4, 1}, { map="case1/tent_out", pos={14, 17} })
+  backDoor:create("tent_tp2", {4, 1}, { map="case1/tent_out", pos={14, 17} }),
+  drop:create("drop_1", {24, 19})
 }
 
 if game:variable("case1") < 1 then
@@ -29,6 +32,7 @@ if game:variable("case1") < 1 then
 
   squad:create("squad_nursery", {47, 35}, events)
   events[#events + 1] = clown:create("squad_nursery_clown2", {48, 36, 2})
+  drop:create("drop_2", {24, 20})
 end
 
 return events
