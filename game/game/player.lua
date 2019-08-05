@@ -122,7 +122,7 @@ function player:loadSave(dump)
 end
 
 function player:getPoses()
-  return 5
+  return 6
 end
 
 return player
