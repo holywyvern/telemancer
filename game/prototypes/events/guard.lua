@@ -2,12 +2,14 @@ local event = require("prototypes.events.clown")
 local scene = require("managers.scene")
 
 local player = require("game.player")
+local interpreter = require("game.interpreter")
 
 local clown = event:extend()
 
 function clown:create(position, orientation, viewD)
   local evt = event.create(self, 'clown', position)
   evt._mode = 'Search'
+  evt._d = position[3] or 2
   evt._t = 0
   evt._speed = 5
   evt._orientation = orientation or 'cw'
@@ -55,6 +57,9 @@ function clown:updateChase()
 end
 
 function clown:call()
+  if interpreter:isRunning() then
+    return
+  end
   scene:switch("gameOver")
 end
 

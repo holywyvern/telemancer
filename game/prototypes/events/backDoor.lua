@@ -19,6 +19,9 @@ function backDoor:create(name, position, destination)
 end
 
 function backDoor:call()
+  if interpreter:isRunning() then
+    return
+  end
   interpreter:startWork()
     interpreter:addCommand("teleport", self._destination, fade:create(0.3))
     interpreter:addCommand("wait", 0.2)
