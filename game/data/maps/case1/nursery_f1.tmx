@@ -75,6 +75,9 @@
  </layer>
  <objectgroup id="4" name="characters"/>
  <layer id="5" name="collitions" width="32" height="19">
+  <properties>
+   <property name="tvWorld" type="bool" value="true"/>
+  </properties>
   <data encoding="csv">
 10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,
 10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,
