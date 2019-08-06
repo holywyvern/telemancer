@@ -1,6 +1,7 @@
 local interpreter = require("game.interpreter")
 local player = require("game.player")
 local game = require("managers.game")
+local save = require("managers.save")
 
 local backDoor = require("prototypes.events.backDoor")
 
@@ -8,8 +9,15 @@ local board = require("prototypes.events.board")
 
 local clown = require("prototypes.events.clown")
 
+local guard = require("prototypes.events.guard")
+
 local events = {
   backDoor:create("back", {16, 30}, { map="case1/mirrors_out", pos={6, 8} }),
+  guard:create({13, 21, 2}),
+  guard:create({10, 27, 4}),
+  guard:create({4, 7, 2}),
+  guard:create({2, 22, 6}),
+  guard:create({4, 24, 4}),
 }
 
 if game:variable("case1") < 2 then
@@ -48,6 +56,14 @@ if game:variable("case1") < 2 then
       interpreter:addCommand("wait", 2)
       interpreter:addCommand("scene", "gameOver")
     interpreter:addCommand("stop")
+  end
+else
+  function events.onEnter()
+    if game:variable("case1") > 2 then
+      return
+    end
+    game:variable("case1", 3)
+    save:dump()
   end
 end
 

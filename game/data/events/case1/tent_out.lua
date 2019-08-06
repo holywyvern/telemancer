@@ -8,6 +8,7 @@ local backDoor = require("prototypes.events.backDoor")
 local board = require("prototypes.events.board")
 
 local clown = require("prototypes.events.clown")
+local guard = require("prototypes.events.guard")
 
 local events = {
   backDoor:create("in_tp", {7, 8}, { map="case1/tent_in", pos={17, 31} }),
@@ -58,7 +59,9 @@ if game:variable("case1") < 2 then
       interpreter:addCommand("scene", "gameOver")
     interpreter:addCommand("stop")
   end
-
+else
+  events[#events + 1] = guard:create({13, 13, 2})
+  events[#events + 1] = guard:create({14, 13, 2})
 end
 
 return events

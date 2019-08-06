@@ -273,16 +273,16 @@ function character:isLookingTo(char, max)
     end
   end
   if self._d == 2 and self._y < char._y then
-    return true
+    return self:hasDirectSight(self._x, self._x, self._y, char._y)
   end
   if self._d == 8 and self._y > char._y then
-    return true
+    return self:hasDirectSight(self._x, self._x, char._y, self._y)
   end
   if self._d == 6 and self._x < char._x then
-    return true
+    return self:hasDirectSight(self._x, char._x, self._y, self._y)
   end
   if self._d == 4 and self._x > char._x then
-    return true
+    return self:hasDirectSight(char._x, self._x, self._y, self._y)
   end
 end
 
@@ -290,6 +290,18 @@ function character:realDistanceFrom(char)
   local x = math.abs(self._realX - char._realX)
   local y = math.abs(self._realY - char._realY)
   return x + y
+end
+
+function character:hasDirectSight(x1, x2, y1, y2)
+  for x=x1,x2,1 do
+    for y=y1,y2,1 do
+      map = map or require("game.map")
+      if not map:isPassable(x, y, self._d, self._solid) then
+        return false
+      end
+    end
+  end
+  return true
 end
 
 return character
