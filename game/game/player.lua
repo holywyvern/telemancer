@@ -93,6 +93,9 @@ function player:canAct()
   if interpreter:isRunning() then
     return false
   end
+  if interpreter:isWorking() then
+    return false
+  end
   return true
 end
 

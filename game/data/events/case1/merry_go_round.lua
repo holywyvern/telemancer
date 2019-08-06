@@ -20,10 +20,10 @@ function events.onEnter()
   interpreter:startWork()
     local i = 0
     if player._y > 6 then
-      interpreter:addCommand("move", player, 4, true)
+      interpreter:addCommand("move", player, 8, true)
     end
     while i < 8 do
-      interpreter:addCommand("move", player, 8, true)
+      interpreter:addCommand("move", player, 6, true)
       i = i + 1
     end
   interpreter:addCommand("scene", "case1/intro", { transition = fade:create(0.3) })

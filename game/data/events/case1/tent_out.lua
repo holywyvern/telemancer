@@ -38,7 +38,7 @@ if game:variable("case1") < 2 then
       end
       interpreter:addCommand("props", player, { _fixDirection = true, _speed = 4 })
       for i=1,5, 1 do
-        interpreter:addCommand("prop", board, "_i", i)
+        interpreter:addCommand("prop", newBoard, "_i", i)
         if i < 3 then
           interpreter:addCommand("move", player, 2, true)
         else
