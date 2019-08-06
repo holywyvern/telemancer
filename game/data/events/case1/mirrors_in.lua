@@ -17,7 +17,10 @@ local events = {
   guard:create({10, 27, 4}),
   guard:create({4, 7, 2}),
   guard:create({2, 22, 6}),
-  guard:create({4, 24, 4}),
+  guard:create({21, 21, 4}, 'cw', 10),
+  guard:create({23, 27, 8}),
+  guard:create({17, 8, 2}),
+  guard:create({23, 9, 8}),
 }
 
 if game:variable("case1") < 2 then
@@ -59,9 +62,9 @@ if game:variable("case1") < 2 then
   end
 else
   function events.onEnter()
-    if game:variable("case1") > 2 then
-      return
-    end
+    if game:variable("case1") > 3 then return end
+    interpreter:addCommand("bgm", "case1/triunph.mp3", { volume = 0.5 })
+    if game:variable("case1") > 2 then return end
     game:variable("case1", 3)
     save:dump()
   end
