@@ -18,6 +18,7 @@ function clown:create(switch, position, orientation, viewD)
   evt._solid = not game:switch(switch)
   evt._tactile = not game:switch(switch)
   evt._viewD = viewD or 6
+  evt._size = 1
   if game:switch(switch) then
     evt._opacity = 0
   end
@@ -42,7 +43,7 @@ function clown:updateSearch(dt)
 end
 
 function clown:updateChase()
-  if self:isLookingTo(player, 1) then
+  if self:isLookingTo(player, self._size) then
     self:callGameOver()
     return
   end

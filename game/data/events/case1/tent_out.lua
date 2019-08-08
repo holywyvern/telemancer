@@ -60,8 +60,12 @@ if game:variable("case1") < 2 then
     interpreter:addCommand("stop")
   end
 else
-  events[#events + 1] = guard:create("tent_out1", {13, 13, 2})
-  events[#events + 1] = guard:create("tent_out2", {14, 13, 2})
+  local d = 2
+  if game:switch("hasNet") then
+    d = 8
+  end
+  events[#events + 1] = guard:create("tent_out1", {13, 13, d})
+  events[#events + 1] = guard:create("tent_out2", {14, 13, d})
 end
 
 return events
