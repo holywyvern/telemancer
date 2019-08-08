@@ -22,6 +22,10 @@ local thanks = {
   "Dad",
   "Nicolás Zarewsky (Nicolás Zarewsky)",
   "Franco Prudhomme (Prudi)",
+  "Leon Calermo (Lion)",
+  "Manuel Tejedor (Manu)",
+  "Gustavo Hernan Sciciliano (Dictador Gus)",
+  "Wolox",
 }
 local speed = 32
 
