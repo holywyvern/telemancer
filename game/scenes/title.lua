@@ -88,6 +88,9 @@ function scene:updatePushButton(dt)
 		self._push = false
 		save:load()
 		manager:switch("map")
+  end
+  if controls:pressed("credits") then
+    manager:switch("credits")
 	end
 end
 

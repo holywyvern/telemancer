@@ -10,6 +10,7 @@ local controls = baton.new {
     accept = {'key:x', 'button:a'},
     cancel = {'key:z', 'button:b'},
     menu = {'key:escape', 'key:return', 'button:start', 'button:y'},
+    credits = {'key:c', 'button:select'}
   },
   pairs = {
     move = {'left', 'right', 'up', 'down'}
