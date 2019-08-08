@@ -25,12 +25,15 @@ local function drawChain()
   love.graphics.clear(0, 0, 0)
   screen.apply()
     scene:drawScene()
-  screen.cease()  
+  screen.cease()
 end
 
 function love.draw()
   if map._chain then
     map._chain(drawChain)
+    screen.apply()
+      scene:emit("drawHud")
+    screen.cease()      
   else
     drawChain()
   end
