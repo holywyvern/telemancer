@@ -14,6 +14,8 @@ local txtDev2 = "Gonzalo Leonel Gutierrez (Guty)"
 local txtTitle2 = "Music"
 local txtMusic = "Ignacio Coluccio (Colulo)"
 local txtTnks = "Special Thanks"
+local txtTitle3 = "Sound effects"
+local txtFree = "Freesound.com"
 local thanks = {
   "Natalia Pastorutti (Nati <3)",
   "Soledad Pastorutti (Sole)",
@@ -44,9 +46,11 @@ function scene:draw()
   local twDev = self._font:getWidth(txtDev) + 1
   local twDev2 = self._font:getWidth(txtDev2) + 1
   local twTitle2 = self._font:getWidth(txtTitle2) + 1
+  local twTitle3 = self._font:getWidth(txtTitle3) + 1
   local twMusic = self._font:getWidth(txtMusic) + 1
   local twTkT = self._font:getWidth(txtTnks) + 1
   local twYou = self._font:getWidth(txtYou) + 1
+  local twFree = self._font:getWidth(txtFree) + 1
   local twThnks = {}
   local xThnks = {}
   local yThnks = {}
@@ -54,28 +58,28 @@ function scene:draw()
     w = self._font:getWidth(txt)
     twThnks[i] = w
     xThnks[i] = math.floor((engine.game.width - w) / 2)
-    yThnks[i] = 150 + 20 * i
+    yThnks[i] = 210 + 20 * i
   end
   local xTitle, yTitle = math.floor((engine.game.width - twTitle) / 2), 30
   local xDev, yDev = math.floor((engine.game.width - twDev) / 2), 50
   local xDev2, yDev2 = math.floor((engine.game.width - twDev2) / 2), 70
   local xTitle2, yTitle2 = math.floor((engine.game.width - twTitle2) / 2), 100
   local xMusic, yMusic = math.floor((engine.game.width - twMusic) / 2), 120
-  local xTkt, yTkt = math.floor((engine.game.width - twTkT) / 2), 150
-  local xYou, yYou = math.floor((engine.game.width - twYou) / 2), yThnks[#yThnks] + 40
+  local xTitle3, yTitle3 = math.floor((engine.game.width - twTitle3) / 2), 160
+  local xFree, yFree = math.floor((engine.game.width - twFree) / 2), 180
+  local xTkt, yTkt = math.floor((engine.game.width - twTkT) / 2), 210
+  local xYou, yYou = math.floor((engine.game.width - twYou) / 2), yThnks[#yThnks] + 90
   love.graphics.setFont(self._font)
   love.graphics.setColor(self:titleColor())
   love.graphics.print(txtTitle, xTitle, yTitle + scrollY)
-  love.graphics.setColor(self:textColor())
-  love.graphics.print(txtDev, xDev, yDev + scrollY)
-  love.graphics.print(txtDev2, xDev2, yDev2 + scrollY)
-  love.graphics.setColor(self:titleColor())
   love.graphics.print(txtTitle2, xTitle2, yTitle2 + scrollY)
-  love.graphics.setColor(self:textColor())
-  love.graphics.print(txtMusic, xMusic, yMusic + scrollY)
-  love.graphics.setColor(self:titleColor())
+  love.graphics.print(txtTitle3, xTitle3, yTitle3 + scrollY)
   love.graphics.print(txtTnks, xTkt, yTkt + scrollY)
   love.graphics.setColor(self:textColor())
+  love.graphics.print(txtDev, xDev, yDev + scrollY)
+  love.graphics.print(txtDev2, xDev2, yDev2 + scrollY)  
+  love.graphics.print(txtMusic, xMusic, yMusic + scrollY)
+  love.graphics.print(txtFree, xFree, yFree + scrollY)
   for i, txt in ipairs(thanks) do
     love.graphics.print(txt, xThnks[i], yThnks[i] + scrollY)  
   end
@@ -99,7 +103,7 @@ function scene:update(dt)
 end
 
 function scene:maxT()
-  return (2 * engine.game.height + 20 * (#thanks + 13)) / speed
+  return (2 * engine.game.height + 20 * (#thanks + 10) + 120) / speed
 end
 
 return scene
