@@ -11,16 +11,19 @@ local clown = require("prototypes.events.clown")
 
 local guard = require("prototypes.events.guard")
 
+local net = require("prototypes.events.net")
+
 local events = {
   backDoor:create("back", {16, 30}, { map="case1/mirrors_out", pos={6, 8} }),
   guard:create("mirrors1", {13, 21, 2}),
   guard:create("mirrors2", {10, 27, 4}),
   guard:create("mirrors3", {4, 7, 2}),
-  guard:create("mirrors4", {2, 22, 6}),
+  guard:create("mirrors4", {2, 21, 6}),
   guard:create("mirrors5", {21, 21, 4}, 'cw', 10),
   guard:create("mirrors6", {23, 27, 8}),
-  guard:create("mirrors7", {17, 8, 2}),
-  guard:create("mirrors8", {23, 9, 8}),
+  guard:create("mirrors7", {13, 8, 2}),
+  guard:create("mirrors8", {25, 9, 8}),
+  net:create({29, 26, 2}),
 }
 
 if game:variable("case1") < 2 then
@@ -62,8 +65,6 @@ if game:variable("case1") < 2 then
   end
 else
   function events.onEnter()
-    if game:variable("case1") > 3 then return end
-    interpreter:addCommand("bgm", "case1/triunph.mp3", { volume = 0.5 })
     if game:variable("case1") > 2 then return end
     game:variable("case1", 3)
     save:dump()

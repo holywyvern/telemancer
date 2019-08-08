@@ -17,7 +17,7 @@ function clown:create(switch, position, orientation, viewD)
   evt._orientation = orientation or 'cw'
   evt._solid = not game:switch(switch)
   evt._tactile = not game:switch(switch)
-  evt._viewD = viewD or 10
+  evt._viewD = viewD or 6
   if game:switch(switch) then
     evt._opacity = 0
   end

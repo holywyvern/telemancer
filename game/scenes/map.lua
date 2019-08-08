@@ -6,6 +6,8 @@ local engine = require("config.engine")
 
 local base = require("prototypes.scene")
 
+local game = require("managers.game")
+
 local scene = base:extend()
 
 function scene:start()
@@ -31,6 +33,11 @@ function scene:draw()
 	map._cam:detach()
 	map._cam:draw()
 	interpreter:draw()
+	self:drawnetHud()
+end
+
+function scene:drawnetHud()
+	if not game:switch('hasNet') then return end
 end
 
 return scene
