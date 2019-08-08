@@ -17,7 +17,7 @@ end
 
 function scene:draw()
   local scrollY = engine.game.height + 96 - (self._t - 1) * 64
-  local txtTitle = "Dev"
+  local txtTitle = "Coding"
   local txtDev = "Ramiro Rojo (RR)"
   local txtDev2 = "Gonzalo Leonel Gutierrez (Guty)"
   local txtTitle2 = "Music"
