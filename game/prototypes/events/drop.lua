@@ -12,8 +12,16 @@ function drop:create(name, position)
   newDrop:moveTo(unpack(position))
   newDrop._standingAnimation = true
   newDrop._solid = true
-  newDrop._z = 1
+  newDrop._z = 3
   return newDrop
+end
+
+function drop:getFrames()
+  return 6
+end
+
+function drop:getPoses()
+  return 1
 end
 
 return drop
