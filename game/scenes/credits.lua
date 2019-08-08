@@ -27,6 +27,8 @@ local thanks = {
   "Leon Calermo (Lion)",
   "Manuel Tejedor (Manu)",
   "Gustavo Hernan Siciliano (Dictador Gus)",
+  "Federico DiRocco (Fede)",
+  "Mariano Ranucci (Marian II)",
   "Wolox",
 }
 local speed = 32
