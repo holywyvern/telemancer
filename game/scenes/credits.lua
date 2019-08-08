@@ -16,6 +16,7 @@ function scene:enter(previous, ...)
 end
 
 function scene:draw()
+  local scrollY = engine.game.height - (self._t - 1) * 64
   local txtTitle = "Dev"
   local txtDev = "Ramiro Rojo (RR)"
   local txtTitle2 = "Music"
@@ -28,18 +29,17 @@ function scene:draw()
   local xDev, yDev = math.floor((engine.game.width - twDev) / 2), 50
   local xTitle2, yTitle2 = math.floor((engine.game.width - twTitle2) / 2), 70
   local xMusic, yMusic = math.floor((engine.game.width - twMusic) / 2), 90
-  local a = math.abs(math.sin(self._t * 1.3))
   love.graphics.setFont(self._font)
-  love.graphics.setColor(0.5, 0.5, 0.5, a)
-  love.graphics.print(txtTitle, xTitle, yTitle)
-  love.graphics.print(txtDev, xDev, yDev)
-  love.graphics.print(txtTitle2, xTitle2, yTitle2)
-  love.graphics.print(txtMusic, xMusic, yMusic)
+  love.graphics.setColor(0.5, 0.5, 0.5, 1)
+  love.graphics.print(txtTitle, xTitle, yTitle + scrollY)
+  love.graphics.print(txtDev, xDev, yDev + scrollY)
+  love.graphics.print(txtTitle2, xTitle2, yTitle2 + scrollY)
+  love.graphics.print(txtMusic, xMusic, yMusic + scrollY)
 end
 
 function scene:update(dt)
   self._t = self._t + dt
-  if self._t > 5.5 and not self._do then
+  if self._t > 10 and not self._do then
     manager:switch("title", { transition = fade:create(0.5) })
     self._do = true
   end
