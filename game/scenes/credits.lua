@@ -16,7 +16,7 @@ function scene:enter(previous, ...)
 end
 
 function scene:draw()
-  local scrollY = engine.game.height + 96 - (self._t - 1) * 64
+  local scrollY = engine.game.height + 96 - (self._t - 1) * 32
   local txtTitle = "Coding"
   local txtDev = "Ramiro Rojo (RR)"
   local txtDev2 = "Gonzalo Leonel Gutierrez (Guty)"
@@ -72,7 +72,7 @@ end
 
 function scene:update(dt)
   self._t = self._t + dt
-  if self._t > 10 and not self._do then
+  if self._t > 20 and not self._do then
     manager:switch("title", { transition = fade:create(0.5) })
     self._do = true
   end
