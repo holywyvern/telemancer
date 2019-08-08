@@ -99,6 +99,7 @@ function map:draw()
   for _, layer in ipairs(data.layers) do
     if layer.name == 'characters' then
       self:drawCharacters()
+      player:drawNet()
     elseif layer.name == 'reflections' then
       self:drawReflections(layer.properties.offset or 16)
     elseif layer.name ~= 'collitions' then

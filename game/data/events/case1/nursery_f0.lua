@@ -13,8 +13,8 @@ return {
   door:create("in5_door", "bathroom", {26, 9}, { map="case1/nursery_f0_in", pos={30, 15} }),
   door:create("in6_door", "bathroom", {30, 9}, { map="case1/nursery_f0_in", pos={37, 15} }),
   door:create("in7_door", "bathroom", {34, 9}, { map="case1/nursery_f0_in", pos={44, 15} }),
-  guard:create({40, 6, 2}),
-  guard:create({42, 6, 2}),
-  guard:create({36, 5, 6}),
-  guard:create({47, 9, 4})
+  guard:create("nursery1", {40, 6, 2}),
+  guard:create("nursery2", {42, 6, 2}),
+  guard:create("nursery3", {36, 5, 6}),
+  guard:create("nursery4", {47, 9, 4})
 }

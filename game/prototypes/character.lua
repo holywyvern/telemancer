@@ -162,6 +162,20 @@ function character:face(direction)
   end
 end
 
+function character:getPositionAdjust(direction)
+  direction = direction or self._d
+  if     direction == 2 then
+    return self._x, self._y + 1
+  elseif direction == 4 then
+    return self._x - 1, self._y
+  elseif direction == 6 then
+    return self._x + 1, self._y
+  elseif direction == 8 then
+    return self._x, self._y - 1
+  end
+  return self._x, self._y
+end
+
 function character:move(direction)
   if self._d ~= direction then
     self:face(direction)
@@ -296,7 +310,11 @@ function character:hasDirectSight(x1, x2, y1, y2)
   for x=x1,x2,1 do
     for y=y1,y2,1 do
       map = map or require("game.map")
-      if not map:isPassable(x, y, self._d, self._solid) then
+      if (x == x1 and y == y1) or (x == x2 and y == y2) then
+        if not map:isPassable(x, y, self._d, false) then
+          return false
+        end
+      elseif not map:isPassable(x, y, self._d, self._solid) then
         return false
       end
     end

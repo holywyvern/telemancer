@@ -60,8 +60,8 @@ if game:variable("case1") < 2 then
     interpreter:addCommand("stop")
   end
 else
-  events[#events + 1] = guard:create({13, 13, 2})
-  events[#events + 1] = guard:create({14, 13, 2})
+  events[#events + 1] = guard:create("tent_out1", {13, 13, 2})
+  events[#events + 1] = guard:create("tent_out2", {14, 13, 2})
 end
 
 return events
