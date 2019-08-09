@@ -47,4 +47,9 @@ function save:exists()
   return love.filesystem.getInfo(filename, "file")
 end
 
+function save:delete()
+  if not self:exists() then return end
+  love.filesystem.remove(filename)
+end
+
 return save

@@ -2,6 +2,7 @@ local base = require("prototypes.scene")
 
 local manager = require("managers.scene")
 local audio = require("managers.audio")
+local save = require("managers.save")
 local engine = require("config.engine")
 
 local fade = require("prototypes.transitions.fadeInOut")
@@ -40,6 +41,7 @@ function scene:enter(previous, ...)
   self._font = love.graphics.newFont("fonts/game.ttf", 16)
   audio:playSe("natalies2.mp3")
   audio:playBgm("credits.mp3")
+  save:delete()
 end
 
 function scene:draw()
@@ -99,7 +101,7 @@ end
 function scene:update(dt)
   self._t = self._t + dt
   if self._t > self:maxT() and not self._do then
-    manager:switch("title", { transition = fade:create(0.5) })
+    love.event.quit()
     self._do = true
   end
 end

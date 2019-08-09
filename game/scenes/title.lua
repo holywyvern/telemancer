@@ -89,9 +89,6 @@ function scene:updatePushButton(dt)
 		save:load()
 		manager:switch("map")
   end
-  if controls:pressed("credits") then
-    manager:switch("credits")
-	end
 end
 
 function scene:updateSelectOption(dt)
