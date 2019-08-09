@@ -78,6 +78,7 @@ function clown:callGameOver()
 end
 
 function clown:onCatch()
+  if game:switch(self._switch) then return end
   game:switch(self._switch, true)
   game:variable('clowns', game:variable('clowns') + 1)
   self._solid = false
