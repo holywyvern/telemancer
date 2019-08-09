@@ -10,7 +10,7 @@ return {
   guard:create("tent_in_3", {5, 21, 2}),
   guard:create("tent_in_4", {28, 15, 8}),
   guard:create("tent_in_5", {14, 26, 4}),
-  guard:create("tent_in_6", {14, 26, 4}),
+  guard:create("tent_in_6", {13, 26, 4}),
   guard:create("tent_in_7", {13, 12, 4}),
   guard:create("tent_in_8", {16, 12, 4}),
   guard:create("tent_in_9", {16, 15, 4}),
