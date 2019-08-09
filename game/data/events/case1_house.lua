@@ -89,7 +89,7 @@ local function playEnding()
   end
   interpreter:addCommand("se", "doors/basic/close.wav")
   interpreter:addCommand("wait", 0.5)
-  interpreter:addCommand("scene", "credits", { transition = fade:create(0.3) }, { map = 'home', pos = {3, 8, 8} })
+  interpreter:addCommand("scene", "credits", { transition = fade:create(0.3) })
 end
 
 function events.onEnter()
