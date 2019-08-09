@@ -53,7 +53,13 @@ function scene:drawHud()
 	love.graphics.draw(self._net, 2, 2)
 	love.graphics.setFont(self._font)
 	love.graphics.setColor(0, 0, 0, 0.3)
-	local formatted = string.format("X (%02d/%02d)", game:variable("clowns"), 30)
+	local clowns = game:variable("clowns")
+	local formatted
+	if clowns >= 30 then
+		formatted = "Exit now!"
+	else
+		formatted = string.format("X (%02d/%02d)", clowns, 30)
+	end
 	love.graphics.print(formatted, 21, 0.8)
 	love.graphics.setColor(1, 1, 1, 1)
 	love.graphics.print(formatted, 20, 0)
