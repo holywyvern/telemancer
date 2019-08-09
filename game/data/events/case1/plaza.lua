@@ -1,6 +1,7 @@
 local backDoor = require("prototypes.events.backDoor")
 
 local game = require("managers.game")
+local interpreter = require("game.interpreter")
 
 local clown = require("prototypes.events.happyClown")
 local giantGuard = require("prototypes.events.giantGuard")
@@ -46,6 +47,10 @@ if game:switch("hasNet") then
   if game:variable("clowns") >= 30 then
     events[#events + 1] = giantGuard:create({37, 37, 2})
   end  
+  
+  function events.onEnter()
+    interpreter:addCommand("save")
+  end
 end
 
 return events
