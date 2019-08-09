@@ -9,7 +9,7 @@ function giant:create(position, orientation, viewD)
   local evt = guard.create(self, 'big_clown', position)
   evt._mode = 'Chase'
   evt._d = position[3] or 2
-  evt._speed = 3
+  evt._speed = 1
   evt._orientation = orientation or 'cw'
   evt._viewD = viewD or 6
   evt._size = 1
