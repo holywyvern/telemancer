@@ -3,6 +3,7 @@ local backDoor = require("prototypes.events.backDoor")
 local game = require("managers.game")
 
 local clown = require("prototypes.events.happyClown")
+local giantGuard = require("prototypes.events.giantGuard")
 
 local squad = require("prototypes.clownSquad")
 
@@ -29,6 +30,22 @@ if game:variable("case1") < 1 then
 
   squad:create("squad_nursery", {47, 35}, events)
   events[#events + 1] = clown:create("squad_nursery_clown2", {48, 36, 2})
+end
+
+if game:switch("hasNet") then
+  events[#events + 1] = giantGuard:create({24, 27, 2})
+
+  if game:variable("clowns") >= 10 then
+    events[#events + 1] = giantGuard:create({11, 15, 2})
+  end
+
+  if game:variable("clowns") >= 20 then
+    events[#events + 1] = giantGuard:create({41, 7, 2})
+  end
+  
+  if game:variable("clowns") >= 30 then
+    events[#events + 1] = giantGuard:create({37, 37, 2})
+  end  
 end
 
 return events
