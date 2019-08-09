@@ -1,5 +1,6 @@
 local backDoor = require("prototypes.events.backDoor")
 
+local audio = require("managers.audio")
 local game = require("managers.game")
 local interpreter = require("game.interpreter")
 
@@ -46,8 +47,21 @@ if game:switch("hasNet") then
   
   if game:variable("clowns") >= 30 then
     events[#events + 1] = giantGuard:create({37, 37, 2})
+    if not game:switch("bossStart") then
+      game:switch("bossStart", true)
+      audio:playBgm("case1/boss.mp3")
+    end
   end  
   
+  if game:switch("bossStart") then
+    events[#events + 1] = giantGuard:create({19, 34, 2})
+    events[#events + 1] = giantGuard:create({20, 34, 2})
+    events[#events + 1] = giantGuard:create({21, 34, 2})
+    events[#events + 1] = giantGuard:create({29, 10, 2})
+    events[#events + 1] = giantGuard:create({29, 11, 2})
+    events[#events + 1] = giantGuard:create({29, 12, 2})
+  end
+
   function events.onEnter()
     interpreter:addCommand("save")
   end
