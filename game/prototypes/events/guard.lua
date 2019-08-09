@@ -69,6 +69,7 @@ function clown:call()
 end
 
 function clown:callGameOver()
+  if self:isMoving() then return end
   if self._opacity < 1 then return end
   if interpreter:isRunning() then
     return
