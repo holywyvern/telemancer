@@ -1,5 +1,5 @@
 local backDoor = require("prototypes.events.backDoor")
-
+local giantGuard = require("prototypes.events.giantGuard")
 
 local game = require("managers.game")
 
